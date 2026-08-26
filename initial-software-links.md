@@ -1,0 +1,14 @@
+# Software Links
+- [Visual Studio Code](https://code.visualstudio.com/download?_exp_download=fb315fc982)
+    - great general editor
+    - does require some configuration for most languages
+- [Intellij](https://www.jetbrains.com/idea/download/?section=windows)
+    - incredibly popular and powerful Java editor
+    - you can facilitate downloading a Java Development Kit and build management system through it
+    - beefy: it requires many system resources to work
+- [Git](https://git-scm.com/)
+    - this is the version control tool we will be using locally
+    - it comes with **Git Bash**, a terminal that emulates Linux
+- [DBeaver](https://dbeaver.io/download/)
+    - Great free database management tool
+    - Similar to Intellij, it is a beefy application
