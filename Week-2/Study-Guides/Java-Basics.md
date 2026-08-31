@@ -205,7 +205,7 @@ String result = sb.toString(); // "Hello World!"
 | Operator | Name | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `&&` | **Logical AND** | Returns `true` only if **both** sides are true. | `(5 > 3 && 2 < 4)` → `true` |
-| `\\|\\|` | **Logical OR** | Returns `true` if **at least one** side is true. | `(5 > 3 \\|\\| 2 > 4)` → `true` |
+| `\|\|` | **Logical OR** | Returns `true` if **at least one** side is true. | `(5 > 3 \|\| 2 > 4)` → `true` |
 | `!` | **Logical NOT** | Reverses the boolean value. | `!(5 > 3)` → `false` |
 
 ### 5.3 Conditional Statements
