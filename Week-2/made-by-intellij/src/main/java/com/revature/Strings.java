@@ -56,5 +56,33 @@ public class Strings {
         System.out.println(name.substring(6)); // shows the text starting at index position 6
         System.out.println(name.substring(6,12)); // shows the text starting at index position 6 and up to but not including index 12
 
+        /*
+            If you ever want to do some String manipulation you are better off using a
+            StringBuilder object (use StringBuffer if in an environment where you
+            expect multiple threads to compete for the same resource)
+
+            StringBuilder is designed to handle String manipulation and persist
+            those changes.
+         */
+        System.out.println();
+
+        // here we make a StringBuilder object and set its initial value as "Billy Billyson"
+        StringBuilder nameBuilder = new StringBuilder(name);
+        System.out.println(nameBuilder);
+        nameBuilder.reverse();
+        System.out.println(nameBuilder);
+        nameBuilder.reverse();
+        nameBuilder.append(" Billerton");
+        System.out.println(nameBuilder);
+        nameBuilder.insert(15, "The Third ");
+        System.out.println(nameBuilder);
+//        int startOfExcess = nameBuilder.indexOf("The third"); note the second t is lowercase: this would return -1
+        int startOfExcess = nameBuilder.indexOf("The Third");
+        int endOfExcess = nameBuilder.lastIndexOf(" ");
+        System.out.println(endOfExcess);
+        nameBuilder.replace(startOfExcess, endOfExcess + 1, "");
+        System.out.println(nameBuilder);
+
+
     }
 }
