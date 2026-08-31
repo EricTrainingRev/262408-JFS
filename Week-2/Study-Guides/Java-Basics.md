@@ -71,7 +71,7 @@ There are 8 primitive types in Java:
 | **Integer** | `byte`, `short`, `int`, `long` | Varies | Whole numbers. |
 | **Floating Point** | `float`, `double` | Varies | Numbers with fractional parts. |
 | **Character** | `char` | 2 bytes | A single Unicode character. |
-| **Logical** | `boolean` | 1 bit* | `true` or `false`. |
+| **Logical** | `boolean` | JVM dependent | `true` or `false`. |
 
 ### 2.3 Wrapper Classes
 
@@ -99,7 +99,7 @@ Casting is the process of converting a value from one data type to another.
 
 **1. Widening Casting (Implicit/Automatic)**
 Converting a smaller type to a larger type size. No data loss occurs.
-`byte` → `short` → `char` → `int` → `long` → `float` → `double`
+`byte` → `short` → `int` → `long` → `float` → `double`
 ```java
 int myInt = 9;
 double myDouble = myInt; // Automatic casting: 9.0
@@ -295,7 +295,7 @@ for (int num : numbers) {
 *   **Imports:** A way to tell the compiler that you want to use a class located in a different package (e.g., `import java.util.Scanner;`).
 
 > [!TIP]
-> **The `java.lang` Exception:** The `java.lang` package (which contains fundamental classes like `String` and `System`) is imported **automatically** by the JVM. You never need to write `import java.lang.*;`.
+> **The `java.lang` Exception:** The `java.lang` package (which contains fundamental classes like `String` and `System`) is available **automatically**. You never need to write `import java.lang.*;`.
 
 ### 7.3 Debugging
 
