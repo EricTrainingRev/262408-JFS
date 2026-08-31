@@ -51,6 +51,10 @@ public class Strings {
          */
 
         System.out.println(name); // Shows the raw String data
-        System.out.println(name.toLowerCase());
+        System.out.println(name.toLowerCase()); // shows the text content in all lowercase
+        System.out.println(name.toUpperCase()); //shows the text content in uppercase
+        System.out.println(name.substring(6)); // shows the text starting at index position 6
+        System.out.println(name.substring(6,12)); // shows the text starting at index position 6 and up to but not including index 12
+
     }
 }
