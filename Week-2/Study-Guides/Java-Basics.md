@@ -214,11 +214,11 @@ String result = sb.toString(); // "Hello World!"
 ```java
 int age = 18;
 if (age >= 18) {
-    System.out.println(\"Adult\");
+    System.out.println("Adult");
 } else if (age > 12) {
-    System.out.println(\"Teenager\");
+    System.out.println("Teenager");
 } else {
-    System.out.println(\"Child\");
+    System.out.println("Child");
 }
 ```
 
@@ -226,9 +226,9 @@ if (age >= 18) {
 ```java
 int day = 2;
 switch (day) {
-    case 1: System.out.println(\"Monday\"); break;
-    case 2: System.out.println(\"Tuesday\"); break;
-    default: System.out.println(\"Invalid day\");
+    case 1: System.out.println("Monday"); break;
+    case 2: System.out.println("Tuesday"); break;
+    default: System.out.println("Invalid day");
 }
 ```
 
