@@ -1,0 +1,4 @@
+- make sure to use development branches
+    - pull from main `git pull`
+    - make your new development branch `git switch -c branch-name`
+    - make sure to update your new branch whenever your team makes changes to the remote repo
