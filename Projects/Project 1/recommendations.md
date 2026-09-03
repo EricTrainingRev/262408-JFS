@@ -9,4 +9,7 @@
 - have your peers review your work
     - once you are ready publish your branch in the remote repo `git push -u origin branch-name`
     - create a pull request in the GitHub repository (or whatever your remote repo is)
-    
+        - make sure to make the request into the proper branch
+        - review the code
+        - make any changes that are needed
+        - merge the changes in
