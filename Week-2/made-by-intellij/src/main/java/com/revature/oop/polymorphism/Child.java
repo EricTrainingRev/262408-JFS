@@ -2,7 +2,7 @@ package com.revature.oop.polymorphism;
 
 public class Child extends Parent{
     /*
-        This is compile-time polymorphism (overriding): we change the implementation of the
+        This is run-time polymorphism (overriding): we change the implementation of the
         parent method so that when it is called by the child some new action
         occurs, even though it is the same method that was provided by the
         parent. The implementation has been overridden.
@@ -13,8 +13,8 @@ public class Child extends Parent{
     }
 
     /*
-        Below we have an example of run-time polymorphism (overloading): at run-time,
-        depending on what argument you provide, the childMethod used will change
+        Below we have an example of compile-time polymorphism (overloading): depending on
+        what argument you provide, the childMethod used will change
      */
 
     public void childMethod(int num){
