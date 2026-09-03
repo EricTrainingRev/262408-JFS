@@ -28,5 +28,8 @@ public class Playground {
         // just change the type declared
         ((ChildTwo) sally).sing();
 
+        ChildTwo monty = new ChildTwo(63, "Monty", "A king!");
+        System.out.println(monty.returnAnswerToBridgeKeeperQuestion());
+
     }
 }
