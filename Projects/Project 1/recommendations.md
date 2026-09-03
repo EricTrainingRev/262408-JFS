@@ -2,3 +2,11 @@
     - pull from main `git pull`
     - make your new development branch `git switch -c branch-name`
     - make sure to update your new branch whenever your team makes changes to the remote repo
+        - switch back to main `git switch main`
+        - pull any new changes that were added to the remote repo `git pull`
+        - merge those changes into my dev branch `git switch branch-name` and then `git merge main`
+    - continue your work!
+- have your peers review your work
+    - once you are ready publish your branch in the remote repo `git push -u origin branch-name`
+    - create a pull request in the GitHub repository (or whatever your remote repo is)
+    
