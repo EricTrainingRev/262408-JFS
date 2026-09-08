@@ -49,10 +49,40 @@ insert into teachers (name) values ('Sally'), ('Slagathor');
 
 insert into student_teacher_relationship (student_id, teacher_id) values (1, 1), (1, 2);
 
+create table clients(
+	id integer primary KEY
+	-- assume there is more...
+);
 
 
+create table accounts(
+	id integer primary key,
+	client_id integer references clients(id),
+	balance real check (balance >= 0.0),
+	account_type text default ('checking')
+);
 
 
+-- tables can have their content altered:
+--	table name can be changed
+-- 	column names can be changed
+--	column types can be changed (new type must be comptable with old type)
+--	column constraints can be changed (think adding/removing a default value, etc.)
+
+
+-- note this will fail of data can not be converted in the currently existing records
+alter table accounts alter column balance type integer; -- NOTE: SQLite does not support this
+-- you can also add columns
+alter table accounts add column interest_rate real;
+-- and remove them
+alter table accounts drop column interest_rate;
+-- also can rename columns
+alter table accounts rename column balance to money; 
+-- and change constraints (NOTE: these do not work in SQLite)
+alter table accounts alter column account_type set not null;
+alter table accounts alter column account_type drop not null;
+-- you can rename your table
+alter table accounts rename to bank_accounts;
 
 
 
