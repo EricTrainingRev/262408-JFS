@@ -1,0 +1,61 @@
+-- double dashes makes an in-line comment
+/*
+	this is how to make
+	a multi-line comment
+*/
+
+/*
+	In SQL there are 5 sublanguages that your queries can fall under
+	- Data Definition Language (DDL)	-> These queries create the structure for your database
+	- Data Manipulation language (DML)	-> These queries create the content for your database
+	- Data Query Language (DQL)			-> These queries retrieve the content from your database
+	- Data Control Language (DCL)		-> These queries control who can access/do what from your database
+	- Transaction Control Language (TCL)-> The keywords in this sublanguage help us to manage our transactions
+*/
+
+-- A good place to start is DDL: if you want to interact with your database in a meaningful way you
+-- need tables! The create keyword is use to make your tables
+CREATE TABLE my_first_table(
+	-- all columns need at least a name and a type
+	first_column text,
+	secound_column integer
+);
+
+-- Now we have a table and we can put some data inside of it. For this we move on to DML and we will use
+-- the insert keyword
+INSERT INTO my_first_table VALUES ('first column data', 10);
+
+-- we can specify what data we want to insert
+INSERT INTO my_first_table (secound_column) VALUES (10);
+
+-- whatever order you specify the columns in the values should follow
+INSERT INTO my_first_table (secound_column, first_column) VALUES (10,'first column data again');
+
+-- you can insert multiple rows of data at once
+INSERT INTO my_first_table VALUES 
+	('more text data', 20),
+	('text data again', 30);
+	
+
+-- let's fix my spelling mistake for the second column. We can alter the table using the
+-- alter keyword
+ALTER TABLE my_first_table RENAME secound_column to second_column;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
