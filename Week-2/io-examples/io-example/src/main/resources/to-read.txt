@@ -1,0 +1,3 @@
+This file has some text in
+it we can look at via the
+various file reading options
