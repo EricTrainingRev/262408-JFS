@@ -41,13 +41,28 @@ INSERT INTO my_first_table VALUES
 -- alter keyword
 ALTER TABLE my_first_table RENAME secound_column to second_column;
 	
+-- Now that we have some data to work with we can start selecting it
+SELECT * from my_first_table;
+
+-- If you want specific data you can use the where keyword to limit the result set
+SELECT * from my_first_table where second_column = 10;
+
+-- you can filter by multiple checks
+select * from my_first_table where second_column = 10 and first_column not null;
+
+-- the where keyword is VERY important when you are editing records. If you do not limit the update you
+-- are trying to make the entire table and its records can be updated
+UPDATE my_first_table SET first_column = 'no longer null' where first_column is null;
+
+-- without the where keyword this becomes a table-wide change
+UPDATE my_first_table set second_column = 0;
 	
-	
-	
-	
-	
-	
-	
+
+-- if you want to clear out all data from a table use the truncate keyword
+TRUNCATE table my_first_table; -- NOTE: sqlite does not support truncate
+-- if for some reason you want to clear all data from a table without truncate you can use the delete
+-- keyword
+DELETE FROM my_first_table;
 	
 	
 	
