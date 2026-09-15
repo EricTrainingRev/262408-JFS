@@ -2,6 +2,7 @@ package collections.set;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Sets {
     /*
@@ -19,11 +20,28 @@ public class Sets {
         myHashSet.add(null);
         System.out.println(myHashSet);
         String myElement;
-        for (String element : myHashSet){
-            if (element.equals("Slagathor")){
-                myElement = element;
-                break;
-            }
-        }
+//        for (String element : myHashSet){
+//            if (element != null && element.equals("Slagathor")){
+//                myElement = element;
+//                break;
+//            }
+//        }
+
+        Set<String> myTreeSet = new TreeSet<>(Set.of("Billy", "Sally", "Slagathor", "Balinda", "Gustov", "Slagathor with a steel chair!"));
+        System.out.println(myTreeSet);
+
+        myTreeSet.remove("Slagathor");
+        System.out.println(myTreeSet);
+
+//        myTreeSet.add(null); null is not supported in a tree set
+
+        /*
+            HashSets are better suited to constant adding/removing of data due to the HashMap backing it. A TreeSet is
+            the better option when the natural ordering of your data is important. Keep in mind adding/removing data from
+            a TreeSet will potentially trigger the reordering of data in the TreeSet, which can become very time consuming
+            as the Set grows
+         */
+
+
     }
 }
