@@ -1,9 +1,6 @@
 package com.revature.examples.dates;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -14,12 +11,12 @@ import java.util.Locale;
 public class DateInfo {
 
     public static void main(String[] args) {
-        now();
-        parsing();
-        formatting();
-        arithmetic();
-        zonesAndInstants();
-        comparisons();
+//        now();
+//        parsing();
+//        formatting();
+//        arithmetic();
+//        zonesAndInstants();
+//        comparisons();
         epoch();
     }
 
@@ -27,7 +24,10 @@ public class DateInfo {
      *  ZonedDateTime.now(zone), Instant.now() (UTC). */
     static void now() {
         System.out.println("-- now --");
+        // this is the simplest way to get the current date and time in Java
         System.out.println(LocalDateTime.now());
+        System.out.println(LocalDate.now());
+        System.out.println(LocalTime.now());
     }
 
     /** 2. Text into objects. ISO-8601 parses with no formatter; anything else needs one. */
@@ -38,6 +38,10 @@ public class DateInfo {
 
     /** 3. Objects back into text. ISO-8601 is the default format. */
     static void formatting() {
+        /*
+            Note the var keyword: this tells the compiler to check the assigned value for the type of the variable. It is
+            an alternate option for declaring your data type, it does not break Java's static typing
+         */
         var date = LocalDate.of(2026, 9, 17);
         var formatter = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy", Locale.UK);
 
@@ -45,12 +49,15 @@ public class DateInfo {
         System.out.println(date.format(formatter));
     }
 
-    /** 4. Moving through time. Every call returns a new object; use Period/Duration/ChronoUnit to measure the gap between two values. */
+    /** 4. Moving through time. Every call returns a new object; use Period/Duration/ChronoUnit to measure
+     * the gap between two values. */
     static void arithmetic() {
         var date = LocalDate.of(2026, 9, 17);
 
         System.out.println("\n-- arithmetic --");
         System.out.println(date.plusDays(10));
+        // remember your dates are immutable
+        System.out.println(date);
     }
 
     /** 5. Zones. An Instant is UTC; the same moment reads differently per zone. */
@@ -58,7 +65,13 @@ public class DateInfo {
         var instant = Instant.parse("2026-09-17T04:45:30Z");
 
         System.out.println("\n-- zones --");
+        /*
+            If you need to convert between time zones you can do so with the atZone method passing it a ZoneId
+         */
         System.out.println(instant.atZone(ZoneId.of("Asia/Tokyo")));
+        // Java has a comprehensive collection of available zone ids
+        System.out.println(ZoneId.getAvailableZoneIds());
+
     }
 
     /** 6. Comparison. isBefore/isAfter compare points in time. */
