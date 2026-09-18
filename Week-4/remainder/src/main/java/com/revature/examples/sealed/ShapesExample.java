@@ -24,6 +24,11 @@ public class ShapesExample {
             shape.declareShape();
             System.out.println(describe(shape));
         }
+
+        Shape supriseShape = new Circle(5.0);
+        if(supriseShape instanceof Circle c){
+            c.saySomethingUnique();
+        }
     }
 
     /**

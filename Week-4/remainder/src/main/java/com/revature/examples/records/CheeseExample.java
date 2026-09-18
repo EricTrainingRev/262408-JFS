@@ -8,7 +8,7 @@ import java.util.Map;
 public class CheeseExample {
 
     public static void main(String[] args) {
-        creating();
+//        creating();
         equality();
     }
 

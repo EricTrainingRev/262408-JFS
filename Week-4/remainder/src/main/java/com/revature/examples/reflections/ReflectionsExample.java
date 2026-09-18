@@ -1,9 +1,6 @@
 package com.revature.examples.reflections;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 /**
  * Reflection: reading and calling another class's attributes and behaviors
@@ -24,7 +21,7 @@ public class ReflectionsExample {
     }
 
     /** A public field. getField finds it because it's visible; no setAccessible needed. */
-    static void publicAttribute() throws Exception {
+    static void publicAttribute() throws NoSuchFieldException, IllegalAccessException {
         Person person = new Person("Billy", "123-45-6789");
         Field field = Person.class.getField("name");
 
@@ -36,12 +33,13 @@ public class ReflectionsExample {
     }
 
     /** A private field: getDeclaredField + setAccessible(true) to open it. */
-    static void privateAttribute() throws Exception {
+    static void privateAttribute() throws NoSuchFieldException, IllegalAccessException {
         Person person = new Person("Billy", "123-45-6789");
         Field field = Person.class.getDeclaredField("socialSecurityNumber");
 
         System.out.println("\n-- private attribute --");
         System.out.println("modifiers    : " + Modifier.toString(field.getModifiers()));
+        // technically this just tells Java whether to enforce access modifiers or not
         field.setAccessible(true); // the line that bypasses private
         System.out.println("get()        : " + field.get(person));
         field.set(person, "000-00-0000");
@@ -49,8 +47,9 @@ public class ReflectionsExample {
     }
 
     /** A public behavior (the constructor), called directly and via reflection. */
-    static void publicBehavior() throws Exception {
+    static void publicBehavior() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Person direct = new Person("Billy", "123-45-6789");
+        // Constructors can be overloaded, so specify the parameters for the constructor you want
         Constructor<Person> constructor = Person.class.getConstructor(String.class, String.class);
         Person reflected = constructor.newInstance("Sally", "987-65-4321");
 

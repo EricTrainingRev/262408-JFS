@@ -1,8 +1,8 @@
 package com.revature.examples.records;
 
 /**
- * A simple record. This one line gives you a private final field per component,
- * a constructor, an accessor per component (name(), never getName()), plus
+ * A simple record. This one line gives you a private final field per parameter,
+ * a constructor, an accessor per component (name(), not getName()), plus
  * equals, hashCode and toString -- all generated, none of it written out here.
  *
  * Records are shallowly immutable and fully transparent: every component is

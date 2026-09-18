@@ -13,4 +13,8 @@ public final class Circle extends Shape {
     public void declareShape() {
         System.out.println("Circle (radius " + radius + ")");
     }
+
+    public void saySomethingUnique(){
+        System.out.println("All cheese should be in a circle");
+    }
 }
