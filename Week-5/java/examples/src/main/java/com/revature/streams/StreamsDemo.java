@@ -36,7 +36,7 @@ public class StreamsDemo {
         System.out.println("-- PENDING orders only --");
         ORDER_LIST.stream()
             .filter(order -> order.status() == OrderStatus.PENDING)
-            .forEach(order -> System.out.println(order));
+            .forEach(System.out::println);
     }
 
     /**
@@ -48,7 +48,7 @@ public class StreamsDemo {
         ORDER_LIST.stream()
             .sorted(Comparator.comparingDouble(PurchaseOrder::amount).reversed())
             .limit(3)
-            .forEach(order -> System.out.println(order));
+            .forEach(System.out::println);
     }
 
     /**
@@ -100,7 +100,7 @@ public class StreamsDemo {
         System.out.println("any pending order? " + hasPendingOrder);
 
         Optional<PurchaseOrder> firstLargeOrder = ORDER_LIST.stream()
-            .filter(order -> order.amount() > 200)
+            .filter(order -> order.amount() > 100)
             .findFirst();
         System.out.println("first order over 200: " + firstLargeOrder.orElse(null));
     }

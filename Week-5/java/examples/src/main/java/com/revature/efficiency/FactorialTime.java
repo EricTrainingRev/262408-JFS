@@ -21,6 +21,9 @@ public class FactorialTime {
         showPermutationCount(5);
         showPermutationCount(6);
         showPermutationCount(7);
+        showPermutationCount(8);
+        showPermutationCount(9);
+        showPermutationCount(10);
         // Observe the tally: 120, 720, 5040 (x6, then x7). Adding one element
         // multiplies the arrangement count by n. That is factorial growth.
     }

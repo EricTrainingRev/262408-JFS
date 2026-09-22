@@ -1,5 +1,6 @@
 package com.revature.optional;
 
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -59,10 +60,8 @@ public class OptionalDemo {
      */
     private static void showActOnPresence() {
         System.out.println("-- ifPresent acts only when a value exists --");
-        Optional.ofNullable(INVENTORY.get("potion"))
-            .ifPresent(stock -> System.out.println("potions in stock: " + stock));
-        Optional.ofNullable(INVENTORY.get("sword"))
-            .ifPresent(stock -> System.out.println("swords in stock: " + stock));
+        Optional.ofNullable(INVENTORY.get("potion")).ifPresent(stock -> System.out.println("potions in stock: " + stock));
+        Optional.ofNullable(INVENTORY.get("sword")).ifPresent(System.out::println);
     }
 
     /**
@@ -76,6 +75,11 @@ public class OptionalDemo {
             .filter(stock -> stock > 0)
             .map(stock -> "You can buy " + stock + " potions");
         System.out.println("potion message: " + message.orElse("Nothing to buy"));
+
+        Optional<String> swordMessage = Optional.ofNullable(INVENTORY.get("sword"))
+                .filter(stock -> stock > 0)
+                .map(stock -> "You can buy " + stock + " potions");
+        System.out.println("sword message: " + swordMessage.orElse("Nothing to buy"));
     }
 
     /**
@@ -87,5 +91,9 @@ public class OptionalDemo {
         int elixirStock = Optional.ofNullable(INVENTORY.get("elixir"))
             .orElseThrow(() -> new IllegalStateException("Required stock missing"));
         System.out.println("elixir stock: " + elixirStock);
+
+        int swordStock = Optional.ofNullable(INVENTORY.get("sword"))
+                .orElseThrow(() -> new IllegalStateException("Required stock missing"));
+        System.out.println("sword stock: " + elixirStock);
     }
 }

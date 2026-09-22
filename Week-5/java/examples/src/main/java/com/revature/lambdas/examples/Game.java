@@ -40,6 +40,14 @@ public class Game {
         // elements stay. Anything the lambda returns false for is dropped in
         // place, so after this call the roster holds only survivors.
         roster.removeIf(player -> player.level() == 0);
+        System.out.println("-- survivors, no special ordering --");
+        System.out.println(roster);
+//        We would need to write a lot more code to accomplish the same thing without the removeIf and lambda:
+//        for(int i = 0; i < roster.size(); i++){
+//            if(roster.get(1).isDead()){
+//                roster.remove(i);
+//            }
+//        }
 
         // Comparator<Player>: the two-argument ordering function sort uses.
         // Returning a negative, zero, or positive number tells List how to lay

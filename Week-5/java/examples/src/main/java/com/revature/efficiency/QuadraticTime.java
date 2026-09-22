@@ -22,6 +22,7 @@ public class QuadraticTime {
         System.out.println("-- O(n^2): bubble sort --");
         showSortCost(100);
         showSortCost(1_000);
+        showSortCost(1_000_000);
         // Observe: n jumps 10x but the comparison count jumps ~100x. That
         // squaring of growth is the signature of O(n^2).
     }
