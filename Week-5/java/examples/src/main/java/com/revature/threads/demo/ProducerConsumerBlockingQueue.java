@@ -48,6 +48,7 @@ public class ProducerConsumerBlockingQueue {
         for (int i = 1; i <= howMany; i++) {
             try {
                 queue.put(i);
+                System.out.println("Putting value " + i + " into queue via " + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -58,6 +59,7 @@ public class ProducerConsumerBlockingQueue {
         try {
             while (true) {
                 int value = queue.take();
+                System.out.println("Retrieving value " + value + " from queue via " + Thread.currentThread().getName());
                 if (value == sentinel) {
                     System.out.println("Consumer saw sentinel and stopped");
                     return;
