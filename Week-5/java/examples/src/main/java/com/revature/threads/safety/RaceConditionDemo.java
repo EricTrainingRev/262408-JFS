@@ -48,5 +48,6 @@ public class RaceConditionDemo {
         int value = count;    // read
         Thread.yield();        // added to make the read/modify/write window a bit wider
         count = value + 1;     // write
+//        count++;
     }
 }

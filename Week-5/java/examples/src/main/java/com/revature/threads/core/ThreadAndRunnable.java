@@ -12,6 +12,7 @@ package com.revature.threads.core;
 public class ThreadAndRunnable {
 
     public static void main(String[] args) {
+        System.out.println("Main method running in thread " + Thread.currentThread().getName());
         // Way 1: a class that extends Thread.
         new WorkerThread().start();
 
@@ -26,7 +27,7 @@ class WorkerThread extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Thread task running (extended Thread)");
+        System.out.println("Thread task running (extended Thread) in thread " + Thread.currentThread().getName());
     }
 }
 
@@ -35,6 +36,6 @@ class WorkerRunnable implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Runnable task running (implemented Runnable)");
+        System.out.println("Runnable task running (implemented Runnable) in thread " + Thread.currentThread().getName());
     }
 }

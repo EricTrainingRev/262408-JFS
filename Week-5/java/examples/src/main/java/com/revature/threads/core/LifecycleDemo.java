@@ -40,6 +40,7 @@ public class LifecycleDemo {
         // TIMED_WAITING: sleeping for a bounded time.
         System.out.println("state while it sleeps:  " + worker.getState());
 
+        // this tells the main thread to pause until the worker thread is done
         worker.join();
 //         TERMINATED: run() finished.
         System.out.println("state after join:       " + worker.getState());
