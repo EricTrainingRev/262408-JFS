@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =========================================================================
+    hibernate.cfg.xml  ==  EXAMPLE / REFERENCE ONLY
+    =========================================================================
+    This is the classic XML-based way to configure Hibernate. It mirrors the
+    exact same settings as hibernate.properties.
+
+    IMPORTANT: This project is wired to use hibernate.properties instead.
+    Hibernate loads hibernate.properties automatically from the classpath,
+    and our HibernateUtil deliberately does NOT call configure() - so this
+    XML file is never read at runtime. It is kept here as a documented
+    example of the alternative XML style, and to show how the two formats
+    map to each other 1:1.
+    ========================================================================= -->
+<!DOCTYPE hibernate-configuration PUBLIC
+       "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+       "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- JDBC connection settings (same as hibernate.properties) -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:mem:testdb</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Schema / DDL behaviour -->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+        <!-- Logging / readability -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Dialect (optional in Hibernate 7 - auto-detected) -->
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- ENTITY MAPPINGS -->
+        <mapping class="org.revature.entity.Customer"/>
+        <mapping class="org.revature.entity.Order"/>
+        <mapping class="org.revature.entity.Payment"/>
+        <mapping class="org.revature.entity.CreditCardPayment"/>
+        <mapping class="org.revature.entity.CashPayment"/>
+
+        <!--
+            If we ever DID want to switch to this XML file, we would Change HibernateUtil
+            to call .configure() before buildSessionFactory()
+            See HibernateUtil for the exact code change.
+        -->
+
+    </session-factory>
+</hibernate-configuration>
