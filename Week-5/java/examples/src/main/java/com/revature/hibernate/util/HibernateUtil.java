@@ -80,7 +80,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(CashPayment.class)
                     .buildSessionFactory();
             // xml version
-            // return new Configuration().configure().buildSessionFactory();
+//             return new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Wrap the raw error so the caller gets a clear, actionable message.
             throw new ExceptionInInitializerError(

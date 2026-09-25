@@ -40,13 +40,13 @@ public class Customer {
      * derive a name from the field (e.g. "firstName"). Providing explicit names
      * matches the typical snake_case convention used in SQL tables.
      */
-    @Column(name = "first_name")
+    @Column(name = "first_name", length = 30)
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "address")
+//    @Column(name = "address")
     private String address;
 
     @Column(name = "years_as_customer")

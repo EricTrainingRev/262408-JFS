@@ -73,7 +73,7 @@ public abstract class Payment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "amount")
+//    @Column(name = "amount")
     private double amount;
 
     /*

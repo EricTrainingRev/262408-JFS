@@ -29,8 +29,8 @@ public class CrudDemo {
             // Create first, so the later operations have data to work with.
             UUID customerId = createCustomer(session);
 
-            readCustomer(session, customerId);
-            updateCustomer(session, customerId);
+//            readCustomer(session, customerId);
+//            updateCustomer(session, customerId);
             deleteCustomer(session, customerId);
         }
 
