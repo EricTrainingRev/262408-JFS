@@ -18,7 +18,7 @@
 
         /* 1. Element selector: weakest. */
         p {
-            color: gray;
+            color: grey;
         }
 
         /* 2. Class selector: beats an element selector. */
@@ -61,14 +61,14 @@
     -->
     <p class="brand">Element + class target me. The class wins, so I'm teal.</p>
 
-    <!-- This one matches only the p element selector, so it's gray. -->
-    <p>Only the element selector targets me, so I'm gray.</p>
+    <!-- This one matches only the p element selector, so it's grey. -->
+    <p>Only the element selector targets me, so I'm grey.</p>
 
     <!-- 
         This one has two classes with equal specificity. They tie, so the
         later rule in the stylesheet wins: .second, making it green. 
     -->
-    <p class="first second">Two equal classes target me. The later rule wins, so I'm green.</p>
+    <p class="second first">Two equal classes target me. The later rule wins, so I'm green.</p>
 
     <!-- 
         INLINE beats everything except !important. This paragraph is red via

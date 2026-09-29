@@ -15,10 +15,14 @@
     <!-- 
         <h1> through <h6> are HEADINGS. <h1> is the biggest/most important, <h6> the smallest. 
         Use them to structure a page's outline, not just to make text big. 
+
+        Note that the important thing is the order of elements in the document. The document
+        is read top to bottom, left to right by default, so even though the three
+        headers below are on the same line of HTML, they are rendered on separate rows in the
+        browser. This is because they are BLOCK elements: they take up as much width as they can
+        when rendered, which leads them to "stacking" on each other in the viewport when rendered
     -->
-    <h1>Main Heading</h1>
-    <h2>Section Heading</h2>
-    <h3>Sub-section Heading</h3>
+    <h1>Main Heading</h1> <h2>Section Heading</h2> <h3>Sub-section Heading</h3>
 
     <!-- <p> is a PARAGRAPH: a block of text. Browsers add space above and below it automatically. -->
     <p>This is a paragraph of text. It sits on its own line and the browser spaces it out from the content around it.</p>
@@ -27,7 +31,7 @@
         <span> is an INLINE container. Unlike <p> or <div>, it doesn't break onto its own line: it wraps a bit of text 
         inside a larger line, ready to be styled or targeted. 
     -->
-    <p>This sentence has a <span>wrapped</span> word inside it.</p>
+    <p>This <span>sentence</span> has two <span>wrapped</span> words inside it.</p>
 
     <!-- <a> is a LINK. The href attribute is the destination URL; target="_blank" opens it in a new tab; title shows a tooltip on hover. -->
     <a href="https://example.com" target="_blank" title="Go to example.com">Visit Example</a>
@@ -37,6 +41,7 @@
         width/height set its size. 
     -->
     <img src="https://example.com/pic.jpg" alt="A description of the picture" width="200" height="150">
+    <img src="./puppy.jpg" alt="image of a puppy" width="200" height="150">
 
     <!-- <ul> is an UNORDERED list (bullets), <ol> is an ORDERED list (numbers), and <li> is each LIST ITEM inside either. -->
     <ul>
@@ -44,7 +49,7 @@
         <li>Second bullet</li>
     </ul>
     <!-- The type attribute on <ol> changes the numbering style (1, A, a, I, i); start sets where counting begins. -->
-    <ol type="A" start="3">
+    <ol type="i" start="3">
         <li>Third letter</li>
         <li>Fourth letter</li>
     </ol>
@@ -54,17 +59,21 @@
         cell span multiple columns, rowspan multiple rows. 
     -->
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Score</th>
-        </tr>
-        <tr>
-            <td>Ada</td>
-            <td>95</td>
-        </tr>
-        <tr>
-            <td colspan="2">This cell spans both columns</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>            
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ada</td>
+                <td>95</td>
+            </tr>
+            <tr>
+                <td colspan="2">This cell spans both columns</td>
+            </tr>            
+        </tbody>
     </table>
 
     <!-- <select> is a DROPDOWN menu. Each <option> is a choice; the value attribute is what gets submitted. -->
@@ -74,7 +83,8 @@
         <option value="blue">Blue</option>
     </select>
 
-    <!-- <label> is a CAPTION for a form control. The for attribute links it to an input by that input's id, so clicking the label focuses the input. -->
+    <!-- <label> is a CAPTION for a form control. The for attribute links it to an input by that input's id, 
+        so clicking the label focuses the input. -->
     <label for="username">Username:</label>
 
     <!-- 

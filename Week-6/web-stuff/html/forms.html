@@ -16,7 +16,7 @@
         inside another context, like an <iframe>, then _parent loads the response in that enclosing context, 
         and _top in the outermost one. 
     -->
-    <form action="/submit" method="post" target="_blank">
+    <form action="/submit" method="get" target="_blank">
 
         <!-- 
             <label> captions a control. The for attribute matches the input's id, 
@@ -33,7 +33,7 @@
 
         <label for="password">Password:</label>
         <!-- type="password" hides the characters as the user types. minlength sets a minimum length. -->
-        <input type="password" id="password" name="password" minlength="8">
+        <input type="password" id="password" name="password" minlength="8" required>
 
         <label for="country">Country:</label>
         <!-- 
