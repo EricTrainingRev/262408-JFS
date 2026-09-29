@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+
+    <!-- 
+        <form> is the container for a group of form controls. When you press "submit", the browser collects 
+        the values from every control inside and sends them to the URL in the action attribute, using the 
+        method attribute. "get" appends the data to the URL; "post" sends it in the request body. 
+        The target attribute controls where the response opens: "_self" (the default) replaces the current 
+        page; "_blank" opens the result in a new tab so your page stays open. If that page is itself shown 
+        inside another context, like an <iframe>, then _parent loads the response in that enclosing context, 
+        and _top in the outermost one. 
+    -->
+    <form action="/submit" method="post" target="_blank">
+
+        <!-- 
+            <label> captions a control. The for attribute matches the input's id, 
+            so clicking the label focuses that input. 
+        -->
+        <label for="name">Name:</label>
+
+        <!-- <input type="text"> is a one-line field. placeholder is the hint text; required blocks submission until it's filled. -->
+        <input type="text" id="name" name="name" placeholder="Ada Lovelace" required>
+
+        <label for="email">Email:</label>
+        <!-- type="email" makes the browser check the value is a valid email address before submitting. -->
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label for="password">Password:</label>
+        <!-- type="password" hides the characters as the user types. minlength sets a minimum length. -->
+        <input type="password" id="password" name="password" minlength="8">
+
+        <label for="country">Country:</label>
+        <!-- 
+            <select> is a dropdown. Each <option> is a choice. The option's value attribute is what gets submitted, 
+            not the visible text. selected picks the default choice. 
+        -->
+        <select id="country" name="country">
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au" selected>Australia</option>
+        </select>
+
+        <label for="message">Message:</label>
+        <!-- <textarea> is a multi-line field. rows/cols set its initial size. -->
+        <textarea id="message" name="message" rows="4" cols="40" placeholder="Tell us something..."></textarea>
+
+        <!-- 
+            <input type="checkbox"> is a single on/off tick. The checked attribute makes it start ticked. 
+            A checkbox submits its value only when it's ticked. The label here wraps the checkbox, so clicking 
+            the text toggles it too. 
+        -->
+        <label for="newsletter">
+            <input type="checkbox" id="newsletter" name="newsletter" value="yes" checked>
+            Subscribe to the newsletter
+        </label>
+
+        <!-- 
+            type="submit" makes the button send the form. Here's the full sequence: first the browser runs the 
+            built-in validation (required, type="email"), and if any rule fails it stops and shows an error next 
+            to the offending field. If all rules pass, it collects the value of every named control, packages them 
+            as name=value pairs, and sends them to the action URL using the method. Without action the data is 
+            sent to the current page; without method it defaults to "get". 
+        -->
+        <button type="submit">Send</button>
+
+    </form>
+
+    <!-- Continue to the advanced controls: radios, file upload, multi-select,
+         disabled/readonly, and pattern validation. -->
+    <p class="note"><a href="forms-advanced.html">Continue to the advanced form controls →</a></p>
+
+</body>
+</html>

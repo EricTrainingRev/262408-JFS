@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+    <link rel="stylesheet" href="variables.css">
+</head>
+<body>
+    <h1>CSS variables: one value, many uses</h1>
+    <p class="intro">
+        A custom property stores a value (a color, a size, a spacing) under a
+        name, then you reuse that name anywhere with <code>var()</code>. Change it
+        in one place and every usage updates.
+    </p>
+
+    <!-- 
+          The :root selector is where global variables are declared and can be
+          shared by the whole page. These are the "design tokens" the buttons,
+          cards, and panels below all draw from. 
+    -->
+    <h2>1. Global variables in :root</h2>
+    <p class="note">
+        Try editing <code>--brand</code> in <code>variables.css</code> (line ~30):
+        the button background, the accent bar, and the left border of this card all
+        change at once — that's the whole point.
+    </p>
+
+    <!--
+          The var() function is how you USE a variable. Here buttons pull the brand
+          color, the hover state follows and lightens it, and the text/darkness come from
+          other variables. Notice the "primary" button is built entirely from variables.
+    -->
+    <div class="btn-row">
+        <button class="btn btn-primary">Primary button</button>
+        <button class="btn btn-secondary">Secondary button</button>
+    </div>
+    <p class="note">
+        Both buttons share the same <code>--radius</code> and <code>--space</code> tokens for
+        their shape and padding, but differ only in which color tokens they use.
+    </p>
+
+    <!--
+          Variables can fall back to a default if they're not defined. This card
+          asks for a token that doesn't exist and uses the fallback instead. Cards
+          also keep consistent spacing from a shared --card-pad variable.
+    -->
+    <h2>2. Fallbacks, and per-element override</h2>
+    <div class="card">This card's <code>--card-pad</code> comes from the global token, so all cards line up.</div>
+    <div class="card tight">I override <code>--card-pad</code> locally (scoped to me), so my padding is smaller.</div>
+    <p class="note">
+        The second card declares its own <code>--card-pad: 8px</code> on itself — variables
+        cascade like any property, so the closest definition wins. And <code>var(--missing, fallback)</code>
+        shows how a default kicks in when a variable isn't defined.
+    </p>
+</body>
+</html>

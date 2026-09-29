@@ -1,0 +1,115 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+.intro {
+    color: #555;
+}
+h2 {
+    margin-top: 32px;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* 1. A NAV THAT WRAPS ON NARROW SCREENS.
+   Base (default) styles: a horizontal row of links. */
+.media-nav {
+    display: flex;
+    gap: 16px;
+}
+.nav-link {
+    text-decoration: none;
+    background: #5c6bc0;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+}
+
+/* When the viewport is 560px wide or less, the nav links wrap onto
+   multiple lines instead of squishing, and the gap tightens. */
+@media (max-width: 560px) {
+    .media-nav {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .nav-link {
+        flex: 1 1 45%;          /* each link takes about half a row */
+        text-align: center;
+    }
+}
+
+/* 2. CARDS that go from two columns to one.
+   Base: two columns (desktop-first style with max-width). */
+.media-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.card {
+    background: #4db6ac;
+    color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* At 640px and under, drop to a single column. */
+@media (max-width: 640px) {
+    .media-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 3. TYPOGRAPHY that only grows on large, wide screens.
+   Base: a normally-sized block. */
+.media-block {
+    background: #ffcc80;
+    border-radius: 6px;
+    padding: 16px;
+    line-height: 1.6;
+}
+
+/* Two conditions joined with `and`: at least 800px wide AND landscape
+   (width >= height). Only then boost the font size. */
+@media (min-width: 800px) and (orientation: landscape) {
+    .media-block {
+        font-size: 1.3em;
+        padding: 24px;
+    }
+}
+
+/* 4. MOBILE-FIRST with min-width.
+   Base styles (no query) target the phone: boxes stack vertically. */
+.media-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.side-main,
+.side-aside {
+    padding: 20px;
+    border-radius: 6px;
+    color: #fff;
+}
+.side-main  { background: #7e57c2; }
+.side-aside { background: #26a69a; }
+
+/* At 700px and up (LARGER than mobile), switch to side-by-side.
+   min-width grows the layout; max-width shrinks it. */
+@media (min-width: 700px) {
+    .media-side {
+        flex-direction: row;
+    }
+}

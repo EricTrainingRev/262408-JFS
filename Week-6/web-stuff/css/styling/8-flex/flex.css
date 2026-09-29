@@ -1,0 +1,88 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+.intro {
+    color: #555;
+}
+h2 {
+    margin-top: 32px;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* A single flex item: colored box so you can see where each one lands.
+   min-width: 0 lets items shrink below their content size when wrapping. */
+.item {
+    background-color: #ec407a;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+    min-width: 0;
+}
+
+/* 1. THE BASICS.
+   display: flex → this element becomes a flex container; its children are
+   laid out in a row along the MAIN axis by default, sized to their content. */
+.flex-row {
+    display: flex;
+}
+
+/* 2. DISTRIBUTING SPACE: justify-content (main axis).
+   space-between → first item at the start, last at the end, space between.
+   center        → items grouped in the middle of the row. */
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+
+/* 3. ALIGNING ACROSS: align-items / align-self (cross axis).
+   The container is given a height so the cross axis has room to work.
+   align-self on each item overrides the container default (stretch). */
+.align-item {
+    display: flex;
+    align-items: stretch;   /* container default */
+    height: 160px;
+    background: #f3e5f5;
+    border-radius: 4px;
+}
+.align-item .item { flex: initial; }
+.align-item .center { align-self: center; }
+.align-item .end    { align-self: flex-end; }
+
+/* 4. WRAPPING AND GROWING.
+   flex-wrap: wrap → items drop to a new line instead of being crushed.
+   flex: 1         → shorthand: grow and shrink equally, share the space. */
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.flex-wrap .grow {
+    flex: 1 1 120px;   /* grow, shrink, and a preferred base width */
+    min-width: 100px;
+}
+
+/* 5. A COLUMN LAYOUT.
+   flex-direction: column → children stack top-to-bottom (main axis is vertical).
+   The middle item with flex: 1 grows to fill the leftover height, pinning the
+   footer to the bottom. height on the container gives the spare room to fill. */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 320px;
+}
+.flex-col .item { flex: initial; }
+.flex-col .grow-main { flex: 1; }

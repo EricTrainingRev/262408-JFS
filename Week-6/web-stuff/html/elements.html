@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Examples</title>
+    <style>
+        /* Minimal table styling so the borders are visible. */
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #999; padding: 4px 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- 
+        <h1> through <h6> are HEADINGS. <h1> is the biggest/most important, <h6> the smallest. 
+        Use them to structure a page's outline, not just to make text big. 
+    -->
+    <h1>Main Heading</h1>
+    <h2>Section Heading</h2>
+    <h3>Sub-section Heading</h3>
+
+    <!-- <p> is a PARAGRAPH: a block of text. Browsers add space above and below it automatically. -->
+    <p>This is a paragraph of text. It sits on its own line and the browser spaces it out from the content around it.</p>
+
+    <!-- 
+        <span> is an INLINE container. Unlike <p> or <div>, it doesn't break onto its own line: it wraps a bit of text 
+        inside a larger line, ready to be styled or targeted. 
+    -->
+    <p>This sentence has a <span>wrapped</span> word inside it.</p>
+
+    <!-- <a> is a LINK. The href attribute is the destination URL; target="_blank" opens it in a new tab; title shows a tooltip on hover. -->
+    <a href="https://example.com" target="_blank" title="Go to example.com">Visit Example</a>
+
+    <!-- 
+        <img> embeds an IMAGE. src is the file/URL, alt is the text shown if the image can't load (and read aloud by screen readers), 
+        width/height set its size. 
+    -->
+    <img src="https://example.com/pic.jpg" alt="A description of the picture" width="200" height="150">
+
+    <!-- <ul> is an UNORDERED list (bullets), <ol> is an ORDERED list (numbers), and <li> is each LIST ITEM inside either. -->
+    <ul>
+        <li>First bullet</li>
+        <li>Second bullet</li>
+    </ul>
+    <!-- The type attribute on <ol> changes the numbering style (1, A, a, I, i); start sets where counting begins. -->
+    <ol type="A" start="3">
+        <li>Third letter</li>
+        <li>Fourth letter</li>
+    </ol>
+
+    <!-- 
+        <table> lays out data in ROWS and COLUMNS. <tr> is a row, <th> a header cell, <td> a data cell. colspan makes a 
+        cell span multiple columns, rowspan multiple rows. 
+    -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td>Ada</td>
+            <td>95</td>
+        </tr>
+        <tr>
+            <td colspan="2">This cell spans both columns</td>
+        </tr>
+    </table>
+
+    <!-- <select> is a DROPDOWN menu. Each <option> is a choice; the value attribute is what gets submitted. -->
+    <select name="color">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+    <!-- <label> is a CAPTION for a form control. The for attribute links it to an input by that input's id, so clicking the label focuses the input. -->
+    <label for="username">Username:</label>
+
+    <!-- 
+        <input> is a one-line form field. The type attribute decides what kind: text, email, password, checkbox, etc. 
+        placeholder shows hint text, maxlength caps the length. 
+    -->
+    <input type="text" id="username" placeholder="Enter your name" maxlength="20">
+
+    <!-- <textarea> is a MULTI-LINE text field. rows/cols set its size, placeholder shows hint text. -->
+    <textarea name="message" rows="4" cols="30" placeholder="Type your message here"></textarea>
+
+    <!-- <button> is a CLICKABLE button. The type attribute matters: "submit" sends a form, "button" does nothing on its own (for JS to hook into). -->
+    <button type="button">Click Me</button>
+
+    <!-- <div> is a BLOCK container: a generic box that groups content together. It has no built-in meaning or styling: it's a blank canvas for layout. -->
+    <div>
+        <p>This paragraph is grouped inside a div.</p>
+        <p>So is this one.</p>
+    </div>
+
+    <!-- <hr> is a HORIZONTAL RULE: a visible line that separates sections of content. It's a void tag — no content, no closing tag. -->
+    <hr>
+
+    <!-- 
+        SEMANTIC elements give structure a meaning that div doesn't. <header> is the top of a page/section, <nav> holds navigation links, 
+        <main> the main content, <section>/<article> group related content, <footer> the bottom. 
+    -->
+    <header>
+        <h1>Site Title</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+    </nav>
+    <main>
+        <section>
+            <h2>About</h2>
+            <p>This is a section of the main content.</p>
+        </section>
+        <article>
+            <h2>News</h2>
+            <p>This is a self-contained article.</p>
+        </article>
+    </main>
+    <footer>
+        <p>Copyright 2026</p>
+    </footer>
+
+</body>
+</html>

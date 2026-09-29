@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography</title>
+    <!-- Every rule here lives in typography.css: this page links that file,
+         and each example below pulls in one class from it. -->
+    <link rel="stylesheet" href="typography.css">
+</head>
+<body>
+    <h1>Typography</h1>
+
+    <!-- color sets the text color. -->
+    <p class="t-color">This text is styled with color.</p>
+
+    <!-- font-size makes text bigger or smaller; rem scales with the page. -->
+    <p class="t-size">This text is styled with font-size.</p>
+
+    <!-- font-weight makes text bold (or back to normal). -->
+    <p class="t-weight">This text is styled with font-weight.</p>
+
+    <!-- font-style slants the text into italics. -->
+    <p class="t-style">This text is styled with font-style.</p>
+
+    <!-- font-family picks the typeface via a stack, with fallbacks. -->
+    <p class="t-family">This text uses a Georgia serif stack.</p>
+
+    <!-- text-align centers the text within its own box. -->
+    <p class="t-align">This line is centered with text-align.</p>
+
+    <!-- 
+        line-height doubles the space between lines of text. The <br> forces
+        a line break so you can see the tall gap between the two lines. 
+    -->
+    <p class="t-lineheight">
+        This paragraph is double-spaced. The taller line height shows as a big gap here,<br>between this line and the one below it.
+    </p>
+
+    <!-- text-decoration removes the default underline from a link. -->
+    <a class="link-nodec" href="#">This link has no underline.</a>
+</body>
+</html>

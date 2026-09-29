@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Specificity</title>
+
+    <!-- 
+        Specificity decides which rule wins when two rules target the same
+        element and set the same property. From weakest to strongest:
+        element selector < class selector < id selector < inline style.
+        When two rules tie, the one later in the source order wins. 
+    -->
+
+    <style>
+        /* Every example below sets the same property (color) to a different
+           value, so you can see which selector wins the overlap. */
+
+        /* 1. Element selector: weakest. */
+        p {
+            color: gray;
+        }
+
+        /* 2. Class selector: beats an element selector. */
+        .brand {
+            color: teal;
+        }
+
+        /* 3. ID selector: beats a class selector. */
+        #featured {
+            color: #c62828;
+        }
+
+        /* 4. Two classes, equal specificity: the later rule wins. */
+        .first {
+            color: blue;
+        }
+        .second {
+            color: green;
+        }
+
+        /* 5. !important beats everything, even an inline style. */
+        .important-note {
+            color: #6a1b9a !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>How specificity resolves overlap</h1>
+
+    <!-- 
+        This paragraph matches all three selectors: p, .brand, and #featured.
+        They all set color, so the strongest one wins: the ID (#featured),
+        which paints it red. 
+    -->
+    <p class="brand" id="featured">Element + class + ID all target me. The ID wins, so I'm red.</p>
+
+    <!-- 
+        This one matches p and .brand only. The class beats the element
+        selector, so it's teal. 
+    -->
+    <p class="brand">Element + class target me. The class wins, so I'm teal.</p>
+
+    <!-- This one matches only the p element selector, so it's gray. -->
+    <p>Only the element selector targets me, so I'm gray.</p>
+
+    <!-- 
+        This one has two classes with equal specificity. They tie, so the
+        later rule in the stylesheet wins: .second, making it green. 
+    -->
+    <p class="first second">Two equal classes target me. The later rule wins, so I'm green.</p>
+
+    <!-- 
+        INLINE beats everything except !important. This paragraph is red via
+        the inline style, even though #featured would also match it. 
+
+        Note on ID selectors: IDs are meant to be unique identifiers, but the browser does not enforce this
+        rule. This means any elements with a shared id attribute will have the associated styling applied to
+        them. If you remove the inline styling below you will see both p elements with the "featured" id will
+        have red text
+    -->
+    <p id="featured" style="color: purple;">An inline style beats the ID selector, so I'm purple.</p>
+
+    <!-- 
+        !important beats even an inline style. This paragraph has an inline
+        color, but the .important-note rule overrides it. Reserve !important 
+        for overriding styles you can't edit directly, like a rule shipped by a 
+        styling library. Reaching for it to override your own selectors usually 
+        means the specificity is getting messy. 
+    -->
+    <p class="important-note" style="color: black;">!important beats the inline style, so I'm purple-violet.</p>
+
+    <!-- 
+        Rule of thumb: prefer classes for styling. They're specific enough to
+        win over element selectors but reusable, unlike IDs and inline styles.
+    -->
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+
+/* 7. PSEUDO-ELEMENTS: style a part of an element, using two colons. */
+
+/* ::first-letter styles just the first letter of a block of text. */
+.dropcap::first-letter {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a148c;
+}
+
+/* ::before and ::after inject content before or after an element.
+   The content property holds whatever gets inserted. */
+.badge::before {
+    content: "✔ ";
+    color: #2e7d32;
+}
+
+/* ::placeholder styles the hint text inside a form field, not typed values. */
+.field::placeholder { color: green; }

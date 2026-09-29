@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <link rel="stylesheet" href="flex.css">
+</head>
+<body>
+    <h1>Flexbox: laying out items along a single axis</h1>
+    <p class="intro">
+        Flexbox arranges items in one direction — a row or a column. It excels at
+        distributing space and aligning items evenly. The examples grow from simple
+        to more practical.
+    </p>
+
+    <!-- A flex container is made with `display: flex`. By default its children
+          sit side by side on the main axis (left → right). Nothing else needed. -->
+    <h2>1. The basics: items in a row</h2>
+    <div class="flex-row">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+    <p class="note">
+        Just <code>display: flex</code> turns the children into a row. They size
+        to their content and line up beside each other.
+    </p>
+
+    <!-- The `justify-content` property spreads the items along the main axis.
+          `space-between` puts all the free space between items; `center` groups
+          them in the middle. -->
+    <h2>2. Distributing space: justify-content</h2>
+    <div class="flex-row justify-between">
+        <div class="item">one</div>
+        <div class="item">two</div>
+        <div class="item">three</div>
+    </div>
+    <div class="flex-row justify-center">
+        <div class="item">one</div>
+        <div class="item">two</div>
+        <div class="item">three</div>
+    </div>
+    <p class="note">
+        <code>space-between</code> pushes the first and last items to the edges;
+        <code>center</code> runs a second example grouped in the middle. Try
+        <code>space-around</code>, <code>flex-start</code>, and
+        <code>flex-end</code> too.
+    </p>
+
+    <!-- `align-items` controls the cross axis (perpendicular to the row). Here a
+         taller container lets you see items pinned to the top, middle, and bottom.
+         Each box uses its own <code>align-self</code> (the per-item override of
+         <code>align-items</code>). -->
+    <h2>3. Aligning up and down: align-items</h2>
+    <div class="flex-row align-item">
+        <div class="item">align-start</div>
+        <div class="item center">align-center</div>
+        <div class="item end">align-end</div>
+    </div>
+    <p class="note">
+        All three elements sit in columns inside one container; each box is
+        individually aligned to the top, center, or bottom with
+        <code>align-self</code> (the per-item version of <code>align-itemsgn-items</code>).
+    </p>
+
+    <!-- Fixed-width items don't fit in the row if the container is narrow.
+         `flex-wrap: wrap` lets them flow onto a second line instead of crushing.
+         The `flex` property grows/shrinks items to fill space (see the CSS). -->
+    <h2>4. Wrapping and growing</h2>
+    <div class="flex-row flex-wrap">
+        <div class="item grow">A</div>
+        <div class="item grow">B</div>
+        <div class="item grow">C</div>
+        <div class="item grow">D</div>
+        <div class="item grow">E</div>
+        <div class="item grow">F</div>
+    </div>
+    <p class="note">
+        <code>flex-wrap: wrap</code> lets items drop to a new line when they run
+        out of room, and <code>flex: 1</code> makes them share the row evenly.
+        Shrink the window to see the boxes wrap.
+    </p>
+
+    <!-- The classic use: the `flex: 1` property makes a sidebar section always
+         fill whatever space is left after the header and footer. This is how
+         sticky-footers and column layouts stay tidy. -->
+    <h2>5. A column layout with a growing middle</h2>
+    <div class="flex-col">
+        <div class="item">header</div>
+        <div class="item grow-main">main content — flex: 1 fills the middle</div>
+        <div class="item">footer</div>
+    </div>
+    <p class="note">
+        <code>flex-direction: column</code> stacks the children vertically. The
+        middle item has <code>flex: 1</code>, so it grows to absorb any extra
+        height, pinning the footer to the bottom.
+    </p>
+</body>
+</html>

@@ -1,0 +1,136 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 700px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* A padded "stage" that demonstrates each positioning type. */
+.stage {
+    background: #fafafa;
+    border: 1px dashed #bdbdbd;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 120px;
+    margin-bottom: 16px;
+}
+
+/* Generic box used across examples. */
+.box {
+    background: #eceff1;
+    color: #222;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+/* 1. STATIC vs RELATIVE.
+   static (default): normal flow, can't be offset.
+   relative: keeps its spot in the flow, but offsets with top/left.
+   The original space stays reserved (that's why the shaded gap remains). */
+.plain-box {
+    margin-top: 12px;
+}
+.rel-box {
+    position: relative;
+    top: 30px;
+    left: 30px;
+    background: #ef9a9a;
+}
+
+/* 2. ABSOLUTE.
+   Removes the element from the flow (no space reserved) and places it relative
+   to the nearest POSITIONED ancestor (one with a position other than static).
+   Because this .stage is static, no positioned ancestor exists and the box
+   anchors to the page instead. Give .stage `position: relative` and it would
+   anchor to the container instead. */
+.abs-page {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f48fb1;
+    width: 220px;
+    z-index: 1;             /* sit above the following paragraph */
+}
+
+/* 3. THE RELATIVE + ABSOLUTE PAIR.
+   Make the parent relative so the absolute child anchors to it, and give the
+   badge room to hang off the edge (the pull needed for the offset to be seen). */
+.card {
+    position: relative;     /* becomes the positioned ancestor for the badge */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 24px 0;         /* outer room so the badge's overhang isn't clipped */
+}
+.card-badge {
+    position: absolute;
+    top: -12px;             /* pull the badge half outside the card's top edge */
+    right: -12px;
+    background: #e53935;
+    color: #fff;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+/* 4. FIXED.
+   Like absolute, but relative to the VIEWPORT: it ignores ancestors and stays
+   put during scroll. bottom/right pin it to the window's corner. */
+.fixed-shout {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4527a0;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    max-width: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+/* 5. CENTERING.
+   margin: 0 auto centers horizontally — only for block elements WITH a width
+   set (otherwise the element is already full width and there's nothing to split). */
+.center-block {
+    width: 60%;
+    background: #e8eaf6;
+    text-align: center;
+    margin: 0 auto;         /* the one-liner horizontal centering trick */
+    padding: 14px;
+    border-radius: 6px;
+}
+
+/* Flexbox centering: center the child on BOTH axes by flexing the parent.
+   No width on the child needed. This builds on the flexbox example. */
+.flex-center {
+    display: flex;
+    align-items: center;    /* cross axis (vertical here) */
+    justify-content: center;/* main axis (horizontal here) */
+    height: 160px;
+    background: #e0f2f1;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+.center-child {
+    background: #00796b;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 6px;
+}

@@ -1,0 +1,41 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+
+/* 6. PSEUDO-CLASSES: select an element by position or state, using one colon.
+   They add no markup: the selector just targets part of the existing list. */
+
+/* :first-child matches the first child of its parent. */
+.list-tall li:first-child { color: #c62828; }
+
+/* :last-child matches the last child. */
+.list-tall li:last-child { color: #1565c0; }
+
+/* :nth-child selects by position; "even" matches the 2nd, 4th, 6th... child. */
+.list-tall li:nth-child(even) { background-color: rgb(119, 255, 119); }
+
+/* :not() matches everything except whatever is in the parentheses. */
+.list-tall li:not(.skip) { font-weight: 600; }
+
+/* State-based pseudo-classes react to the user, with no animation needed:
+   the style just snaps on and off. */
+
+/* :hover applies while the pointer is over the element. */
+.state-hover:hover { color: #c62828; }
+
+/* :focus applies while the element is selected, e.g. a clicked/selected field. */
+.state-focus:focus {
+    border: 2px solid #1565c0;
+    outline: none;
+}
+
+/* :visited applies to links you have already clicked. */
+.state-visited:visited { color: #6a1b9a; }

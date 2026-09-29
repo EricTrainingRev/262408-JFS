@@ -1,0 +1,16 @@
+/* external.css
+   A standalone stylesheet, loaded into a page with a <link> tag.
+   Rules here can style any page that links this file. */
+
+body {
+    background-color: purple;
+}
+
+/* The .external-note class, used by a paragraph in application.html.
+   The class just has to exist somewhere (internal or external) for the
+   element to pick up these styles. */
+.external-note {
+    background-color: #fff3cd;
+    border-left: 4px solid #f9a825;
+    padding: 4px 8px;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning</title>
+    <link rel="stylesheet" href="positioning.css">
+</head>
+<body>
+    <h1>Positioning: placing elements relative to something</h1>
+    <p class="intro">
+        Layout systems (flex, grid) handle how elements <em>flow</em>. The
+        <code>position</code> property moves an element to a specific spot, and can
+        even lift it out of the flow entirely. Scroll this page to see everything.
+    </p>
+
+    <!-- 
+          `position: static` is the default: the element sits in normal flow.
+          `position: relative` keeps its spot in the flow but lets you nudge it
+          with top/right/bottom/left. Crucially, relatively positioned elements still
+          OCCUPY their original space — the shaded gap below stays even after the
+          offset moves the box. 
+    -->
+    <h2>1. static vs. relative</h2>
+    <div class="stage">
+        <div class="box rel-box">relative — nudged 30px down and right, but my original spot is still reserved</div>
+        <div class="box plain-box">static — nothing special, normal flow</div>
+    </div>
+    <p class="note">
+        The red box is <code>position: relative; top: 30px; left: 30px</code>. Notice the empty
+        shaded space where it would have been: relative keeps its original footprint.
+    </p>
+
+    <!-- 
+          `position: absolute` REMOVES the element from the flow entirely (no space
+          is reserved for it) and positions it relative to its nearest POSITIONED
+          ancestor — one with a position other than static. In this first stage the
+          container has no position, so the box keys off the page itself. 
+    -->
+    <h2>2. absolute — relative to the page</h2>
+    <div class="stage">
+        <div class="box abs-page">absolute: 20px from the top-right of the page</div>
+        <p>This paragraph shares the stage with the absolutely-positioned box, which no longer takes up any space here.</p>
+    </div>
+    <p class="note">
+        The pink box is <code>position: absolute; top: 20px; right: 20px</code>. This container has
+        no <code>position</code> set, so the box anchors to the page. It overlays the paragraph —
+        it was removed from the flow.
+    </p>
+
+    <!-- 
+          The classic pair: give the parent `position: relative;` so it becomes
+          the "positioned ancestor," then the absolute child keys off THAT instead
+          of the page. This is how you pin a badge or label to a corner of a card. 
+    -->
+    <h2>3. The relative + absolute pair</h2>
+    <div class="card">
+        <div class="card-badge">NEW</div>
+        <h3>A product card</h3>
+        <p>The card is <code>position: relative</code>. Its badge is absolute and uses
+        <code>top: -12px; right: -12px</code> to sit on the corner.</p>
+    </div>
+    <p class="note">
+        Same absolute technique as example 2, but now the card <em>is</em> positioned, so the
+        badge hugs the card's corner instead of the page. This is the classic badge/pin pattern.
+    </p>
+
+    <!-- 
+          `position: fixed` is absolute, but relative to the VIEWPORT: it stays put
+          while the page scrolls. This nav will follow you down the page. 
+    -->
+    <h2>4. fixed — stays while you scroll</h2>
+    <div class="stage">
+        <p>This example's fixed nav is pinned to the bottom-right of the window. Scroll and it never moves.</p>
+    </div>
+    <div class="fixed-shout">
+        I'm fixed to the bottom-right corner of the viewport. Scroll down and I stay.
+    </div>
+    <p class="note">
+        <code>position: fixed; bottom: 20px; right: 20px</code>. Unlike absolute, fixed keys off the
+        viewport (browser window), not any ancestor, so scrolling doesn't move it.
+    </p>
+
+    <!-- 
+          Centering a block horizontally is one line when a width is set:
+          `margin: 0 auto` splits the extra space on both sides. Vertical + horizontal
+          centering is flexbox's job: flex the parent with align/justify center. 
+    -->
+    <h2>5. Centering</h2>
+    <div class="center-block">I'm centered with margin: 0 auto (a width is set)</div>
+    <div class="flex-center">
+        <div class="center-child">child centered with flexbox (both axes)</div>
+    </div>
+    <p class="note">
+        Top: <code>margin: 0 auto</code> centers the block only horizontally, and only works with a
+        <code>width</code>. Bottom: <code>display: flex; align-items: center; justify-content:
+        center</code> on the parent centers the child on both axes — the modern way.
+    </p>
+</body>
+</html>

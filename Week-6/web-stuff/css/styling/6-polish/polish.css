@@ -1,0 +1,27 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+
+/* 5. STATIC POLISH: small visual touches that don't animate. */
+
+/* Helper: give the polish examples a frame so their effect is easy to spot. */
+.framed {
+    border: 1px solid #90a4ae;
+    padding: 8px;
+    margin: 8px 0;
+    background-color: #f4f8fa;
+}
+
+/* opacity: how transparent the element is (1 = opaque, 0 = invisible). */
+.p-opacity { opacity: 0.6; }
+
+/* cursor: what the pointer shows over the element. */
+.p-cursor { cursor: pointer; }

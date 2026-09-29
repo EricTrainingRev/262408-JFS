@@ -1,0 +1,42 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+
+/* 1. TYPOGRAPHY: things that change how text looks. */
+
+/* color: the text color of an element. */
+.t-color { color: #2e7d32; }
+
+/* font-size: how big the text is. rem scales with the page's base size,
+   so it's more flexible than a fixed pixel size. */
+.t-size { font-size: 1.5rem; }
+
+/* font-weight: how thick or bold the text is (400 normal, 700 bold). */
+.t-weight { font-weight: 700; }
+
+/* font-style: italic, oblique, or normal. */
+.t-style { font-style: italic; }
+
+/* font-family: which typeface to use. The comma list is a "stack": the
+   browser tries each in order until it finds one installed on the machine. */
+.t-family { font-family: Georgia, "Times New Roman", serif; }
+
+/* text-align: horizontal alignment of text inside the element. */
+.t-align { text-align: center; }
+
+/* line-height: vertical space between lines of text. 2 means double-spaced. */
+.t-lineheight { line-height: 2; }
+
+/* text-decoration: removes the default underline from a link. */
+.link-nodec {
+    color: #1565c0;
+    text-decoration: none;
+}

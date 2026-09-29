@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms, Advanced</title>
+    <style>
+        /* The :valid / :invalid pseudo-classes let CSS react to the browser's
+           built-in validation. As you type, a field turns green once it passes
+           its rules (required, pattern, min, etc.) and red while it fails. */
+        body { font-family: system-ui, sans-serif; max-width: 620px; margin: 24px auto; padding: 0 16px; color: #212121; }
+        form { border: 1px dashed #bdbdbd; border-radius: 8px; padding: 16px; margin-bottom: 20px; }
+        label { display: block; margin-top: 12px; font-weight: 600; }
+        input, select, textarea { margin-top: 4px; }
+        .note { font-size: 0.9em; color: #555; }
+
+        input:valid { border: 2px solid #2e7d32; }
+        input:invalid { border: 2px solid #c62828; }
+        /* :invalid already shows before the user touches a required empty field,
+           which is ugly. :placeholder-shown lets us quiet that until typing. */
+        input:placeholder-shown { border: 2px solid #90a4ae; }
+    </style>
+</head>
+<body>
+    <h1>Forms: the advanced controls</h1>
+    <p class="note">
+        These build on <code>forms.html</code>, covering the selection and validation
+        controls that weren't in the intro. The green/red borders come from the
+        <code>:valid</code> / <code>:invalid</code> CSS rules in the &lt;style&gt; above.
+    </p>
+
+    <!--
+        RADIO buttons make exactly ONE choice per group. All radios in a group
+        share the SAME `name`; that shared name is also the key submitted to the
+        server (e.g. name="size" → ?size=medium). The checked attribute marks the
+        default choice. 
+    -->
+    <h2>1. Radio group (one choice)</h2>
+    <form action="/prefs" method="get">
+        <p class="note">Choose a size — only one is selectable because all share <code>name="size"</code>.</p>
+        <label><input type="radio" name="size" value="small"> Small</label>
+        <label><input type="radio" name="size" value="medium" checked> Medium (default)</label>
+        <label><input type="radio" name="size" value="large"> Large</label>
+        <p class="note">
+            This form uses <code>method="get"</code> — when you submit, the choice shows up in the
+            URL as a query string, e.g. <code>?size=large</code>. GET keeps the result bookmarkable.
+        </p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--
+        NUMBER input with min/max range limits. The browser enforces the range
+        on submit and provides up/down steppers.
+    -->
+    <h2>2. Number with min/max</h2>
+    <form action="/submit" method="post">
+        <label for="age">Age (3–99):</label>
+        <input type="number" id="age" name="age" min="3" max="99" value="25" required>
+        <p class="note"><code>min</code>/<code>max</code> set the allowed range; the field goes red if you go outside it.</p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--
+        FILE upload MUST live in a form with enctype="multipart/form-data".
+        Without it, only the file's NAME is sent as a string — the actual file
+        content is lost. This rule matters only for forms that upload files. 
+    -->
+    <h2>3. File upload (requires multipart encoding)</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="upload">Pick a file:</label>
+        <input type="file" id="upload" name="upload">
+        <p class="note">
+            <code>enctype="multipart/form-data"</code> is essential — it's how the browser sends
+            the actual file bytes, not just the filename.
+        </p>
+        <button type="submit">Upload</button>
+    </form>
+
+    <!--
+        MULTIPLE select lets the user pick more than one option. The `multiple`
+        attribute turns the dropdown into a scrollable list. It submits one
+        name=value pair per chosen option (skills=html&skills=css). 
+    -->
+    <h2>4. Multi-select (many choices)</h2>
+    <form action="/submit" method="post">
+        <label for="skills">Skills (hold Ctrl/Cmd to select several):</label>
+        <select id="skills" name="skills" multiple size="4">
+            <option value="html" selected>HTML</option>
+            <option value="css" selected>CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="python">Python</option>
+        </select>
+        <p class="note">
+            Submits one pair per selection: <code>skills=html&amp;skills=css</code>. That's the
+            "repeated key" behavior from the note.
+        </p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--
+        disabled vs readonly. disabled is ignored entirely (nothing is sent).
+        readonly still submits its value but can't be edited. One subtlety: only
+        "readonly" can show a value in the submitted data; a disabled field is
+        left out of the request completely. 
+    -->
+    <h2>5. disabled vs. readonly</h2>
+    <form action="/submit" method="post">
+        <label for="locked">This field is disabled — not sent, not editable:</label>
+        <input type="text" id="locked" name="locked" value="I get dropped" disabled>
+
+        <label for="fixed">This field is readonly — can't edit, but IS sent:</label>
+        <input type="text" id="fixed" name="fixed" value="I get submitted" readonly>
+
+        <label for="live">This normal field is editable and sent:</label>
+        <input type="text" id="live" name="live" value="I'm editable">
+
+        <p class="note">
+            On submit, <code>fixed</code> and <code>live</code> values are sent; <code>locked</code>
+            (disabled) is omitted from the request.
+        </p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--
+        PATTERN validates against a regex. This one wants exactly three letters,
+        A–Z a–z. novalidate on the form switches off ALL built-in validation so
+        you can handle it yourself with JavaScript (see the note). 
+    -->
+    <h2>6. pattern and novalidate</h2>
+    <form action="/submit" method="post">
+        <label for="code">Code (3 letters):</label>
+        <input type="text" id="code" name="code" pattern="[A-Za-z]{3}" placeholder="e.g. abc">
+        <p class="note"><code>pattern="[A-Za-z]{3}"</code> means exactly three letters — the field is
+        invalid until it matches.</p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="/submit" method="get" novalidate>
+        <p class="note">This form has <code>novalidate</code>: the required field below is skipped by the
+        browser (useful when JS validates instead).</p>
+        <label for="no-validate">Required, but novalidate disables the check:</label>
+        <input type="text" id="no-validate" name="no-validate" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

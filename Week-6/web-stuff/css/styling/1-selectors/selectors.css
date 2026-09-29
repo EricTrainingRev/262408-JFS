@@ -1,0 +1,119 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 680px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* The three basics.
+   Element: every <p>.
+   Class:   everything with .highlight.
+   ID:      the one element with #unique.
+   These apply in order below; specificity (not source order) decides the winner,
+   which is why the ID and class still beat the earlier element rule. */
+p {
+    color: black;          /* element selector */
+}
+.highlight {
+    background: #fff3cd;     /* class selector */
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+#unique {
+    color: #c62828;          /* ID selector — overrides the element color */
+    font-weight: bold;
+}
+
+/* Attribute selectors.
+   [type="text"]  → matches input fields whose type is exactly "text".
+   [href^="https"]→ ^= means "starts with" — matches links beginning with https.
+   Attribute selectors score the same as a class in the specificity tally. */
+input[type="text"] {
+    padding: 6px 10px;
+    border: 2px solid #3949ab;
+    border-radius: 4px;
+}
+a[href^="https"] {
+    color: #00796b;
+    text-decoration: underline wavy #00796b;
+}
+
+/* Combinators — each is scoped to its OWN container class so the examples
+   don't interfere, and so you can see the exact set each one selects. */
+
+/* 3.1 DESCENDANT (space): any <p> inside .desc, at any depth. */
+.desc p {
+    background: red;
+    padding: 4px 8px;
+}
+
+/* 3.2 CHILD (>): only <p> that are DIRECT children of .child. */
+.child > p {
+    background: blue;
+    padding: 4px 8px;
+}
+
+/* 3.3 ADJACENT SIBLING (+): only the <p> right after the <h3>, same parent. */
+.adj h3 + p {
+    background: green;
+    padding: 4px 8px;
+}
+
+/* 3.4 GENERAL SIBLING (~): every <p> after the <h3>, same parent. */
+.gen h3 ~ p {
+    background: purple;
+    padding: 4px 8px;
+}
+
+/* Shared styling for the combinator boxes. The strong label is left unstyled
+   so the colored paragraphs below it show clearly. */
+.box-c {
+    background: #fafafa;
+    border: 1px dashed #bdbdbd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.box-c strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* 4. COMBINING selectors.
+   `.actions button` = descendant combinator (scoped to .actions).
+   `[disabled]`      = attribute selector, styles the disabled state. */
+.actions button {
+    display: block;
+    margin-bottom: 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #9fa8da;
+    background: #e8eaf6;
+    cursor: pointer;
+}
+.actions button[disabled] {
+    background: #eeeeee;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+}

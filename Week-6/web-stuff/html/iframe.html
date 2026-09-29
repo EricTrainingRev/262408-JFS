@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Example</title>
+</head>
+<body>
+
+    <!-- 
+        <iframe> embeds another page inside this one. The intended use is third-party content you don't 
+        control, like a video, map, or widget. src is the page to embed. title gives it a name for screen 
+        readers and is required for accessibility. width/height set the frame's size, and loading="lazy" 
+        waits to load it until it scrolls into view. 
+    -->
+    <!-- A simple video embed, the most common real-world use for an iframe. -->
+    <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="A video"
+        width="560"
+        height="315"
+        loading="lazy"
+    ></iframe>
+
+    <!-- 
+        A page embed: this one is a Wikipedia article. Many sites may include an 
+        X-Frame-Options: DENY header that tells the browser to refuse being embedded, so this 
+        may show as a blank frame. That's the site opting out, not an iframe failing. 
+    -->
+    <iframe
+        src="https://en.wikipedia.org/wiki/Rick_Astley"
+        title="The Wikipedia article on Rick Astley"
+        width="560"
+        height="315"
+        loading="lazy"
+    ></iframe>
+
+</body>
+</html>

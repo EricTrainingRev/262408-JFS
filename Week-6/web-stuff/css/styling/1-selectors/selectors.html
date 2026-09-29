@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <link rel="stylesheet" href="selectors.css">
+</head>
+<body>
+    <h1>Selectors: pointing CSS at the right elements</h1>
+    <p class="intro">
+        Selectors pick which elements a rule styles. Here are the basics, attribute
+        selectors, and the combinators that target elements by their position in the
+        markup.
+    </p>
+
+    <!-- 
+          The three BASICS: element selectors hit every tag of that type, class
+          targets anything sharing a class, and ID targets one unique element.
+          Each colored line below was styled with a different kind of selector. 
+    -->
+    <h2>1. Element, class, and ID selectors</h2>
+    <p>The element selector colors every <code>&lt;p&gt;</code>.</p>
+    <p class="highlight">The class selector "highlight" colors everything sharing that class.</p>
+    <p id="unique">The ID selector "unique" colors only this one element.</p>
+    <p class="note">
+        Note the source order in the CSS: even though the class and ID rules come later,
+        an ID beats a class beats an element — specificity, not order. See
+        <code>specificity.html</code> for the details.
+    </p>
+
+    <!-- 
+          Attribute selectors match on the attribute itself, not just the tag.
+          [type="text"] hits text fields; [href^="https"] matches links starting
+          with https; [class~="wide"] matches a class list containing "wide". 
+    -->
+    <h2>2. Attribute selectors</h2>
+    <p><input type="text" placeholder="Styled by [type='text']"></p>
+    <p><input type="password" placeholder="Not a text input, so not matched"></p>
+    <p>
+        <a href="https://secure.example.com" class="secure">[href^="https"] targets links starting with https</a>
+    </p>
+    <p class="note">
+        Attribute selectors add <strong>no extra weight</strong> beyond a class — they score the same
+        as a class in the specificity tally (see the note's §4.2).
+    </p>
+
+    <!-- 
+          COMBINATORS describe the relationship between two selectors. Each box
+          below uses one combinator so you can see exactly what it selects. 
+    -->
+    <h2>3. Combinators</h2>
+
+    <!--
+        DESCENDANT (space): `.wrap p` matches ANY <p> inside .wrap, including
+        ones nested deeper. Both paragraphs here (the direct one and the nested
+        one) get the style. 
+    -->
+    <div class="wrap box-c desc"><strong>Descendant: `.wrap p`</strong>
+        <p>I'm a direct &lt;p&gt; inside .wrap.</p>
+        <div class="inner">
+            <p>I'm a &lt;p&gt; nested one level deeper — still matched.</p>
+        </div>
+    </div>
+
+    <!--
+        CHILD (>): `.wrap > p` matches only <p> elements that are DIRECT children
+        of .wrap. The one tucked inside .inner is not a direct child, so it is
+        NOT matched. 
+    -->
+    <div class="wrap box-c child"><strong>Child: `.wrap > p`</strong>
+        <p>I'm a direct &lt;p&gt; child of .wrap — matched.</p>
+        <div class="inner">
+            <p>I'm nested inside .inner, not a direct child — NOT matched.</p>
+        </div>
+    </div>
+
+    <!--
+        ADJACENT SIBLING (+): `h3 + p` matches only the FIRST <p> immediately
+        after the <h3>. The second <p> is not adjacent (it's after the first
+        <p>), so it is NOT matched. 
+    -->
+    <div class="box-c adj"><strong>Adjacent sibling: `h3 + p`</strong>
+        <h3>Heading</h3>
+        <p>I come right after the &lt;h3&gt; — matched.</p>
+        <p>I come after a &lt;p&gt;, not the &lt;h3&gt; — not matched.</p>
+    </div>
+
+    <!--
+        GENERAL SIBLING (~): `h3 ~ p` matches EVERY <p> that comes after the
+        <h3> and shares its parent. Both paragraphs are matched. 
+    -->
+    <div class="box-c gen"><strong>General sibling: `h3 ~ p`</strong>
+        <h3>Heading</h3>
+        <p>I follow the &lt;h3&gt; — matched.</p>
+        <p>I follow it too — matched (all following siblings match).</p>
+    </div>
+
+    <p class="note">
+        Space = any descendant, <code>&gt;</code> = direct child, <code>+</code> = the next adjacent
+        sibling, <code>~</code> = all following siblings. And in specificity terms, none of the
+        combinators add any weight — <code>.wrap &gt; p</code> scores the same as <code>.wrap p</code>.
+    </p>
+
+    <!-- 
+          Combining a few of these: this button is targeted by a class + element
+          combinator style. It's here to show several selectors working together. 
+    -->
+    <h2>4. Combining selectors</h2>
+    <div class="actions">
+        <button class="act">Class ".act" inside ".actions" (descendant)</button>
+        <button class="act" disabled>aria-aware: `[disabled]` styles the disabled state</button>
+    </div>
+    <p class="note">
+        <code>.actions button</code> is a descendant combinator; <code>[disabled]</code> is an
+        attribute selector. Together they let CSS style state without extra classes.
+    </p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-classes</title>
+    <link rel="stylesheet" href="pseudo-classes.css">
+</head>
+<body>
+    <h1>Pseudo-classes (one colon)</h1>
+
+    <!-- :first-child, :last-child, :nth-child, and :not() target list items
+         by position without adding any class to them. Watch the first, last,
+         and every-even item get colored, and the bold skip rule. -->
+    <ul class="list-tall">
+        <li>One (matches :first-child)</li>
+        <li>Two (even)</li>
+        <li>Three</li>
+        <li>Four (even)</li>
+        <li class="skip">Five (has the .skip class, so :not(.skip) skips it)</li>
+        <li>Six (matches :last-child)</li>
+    </ul>
+
+    <!-- State-based pseudo-classes react to the user, instantly (no animation).
+         Move the pointer over this link to trigger :hover. -->
+    <p>Hover me: <a class="state-hover" href="#">this link turns red on hover</a>.</p>
+
+    <!-- :focus triggers when a field is clicked or tabbed into.
+         Click inside the box to turn its border blue. -->
+    <p><input class="state-focus" type="text" placeholder="Click inside" size="20"></p>
+
+    <!-- :visited styles links you have already clicked. Click the link once,
+         then come back: it stays purple. -->
+    <p>Already visited: <a class="state-visited" href="#visited">this link is purple after I click it</a>.</p>
+</body>
+</html>

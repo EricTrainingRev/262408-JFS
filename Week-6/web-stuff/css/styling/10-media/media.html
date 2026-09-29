@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- The viewport meta tag is required for media queries to work on phones:
+         without it a mobile browser lets you "zoom out" and report a huge fake
+         viewport width, so breakpoints like "max-width: 640px" never trigger. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+    <link rel="stylesheet" href="media.css">
+</head>
+<body>
+    <h1>Media queries: changing the layout based on conditions</h1>
+    <p class="intro">
+        A media query applies a block of CSS only when a condition is true — usually
+        the screen's width. Resize this window and watch each example adapt.
+    </p>
+
+    <!-- 
+          The most common use: `max-width` breakpoints. A navigation row is fine on
+          a wide screen, but on a narrow one it wraps into stacked buttons.
+          Resize the window to see it happen live. 
+    -->
+    <h2>1. A nav that wraps on narrow screens</h2>
+    <nav class="media-nav">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Blog</a>
+        <a href="#" class="nav-link">Contact</a>
+    </nav>
+    <p class="note">
+        Below <code>560px</code> wide, <code>flex-wrap: wrap</code> and a change to
+        the gap let the links stack instead of squishing. Try it by shrinking the window.
+    </p>
+
+    <!-- 
+          A two-column card grid on desktop collapses to a single column on phones.
+          The grid is defined differently depending on the viewport width. 
+    -->
+    <h2>2. Cards: two columns on desktop, one on mobile</h2>
+    <div class="media-cards">
+        <div class="card">card one</div>
+        <div class="card">card two</div>
+        <div class="card">card three</div>
+        <div class="card">card four</div>
+    </div>
+    <p class="note">
+        On wide screens the grid has two columns; under <code>640px</code> it becomes
+        one. The breakpoint is set in the CSS with <code>@media</code>.
+    </p>
+
+    <!-- 
+          Media queries can also target width only, or combine conditions with
+          `and`. This type scale boosts the heading size only on screens that are
+          both large and landscape. 
+    -->
+    <h2>3. Bigger headings on large, wide screens</h2>
+    <p class="media-block">
+        This block's typography is bumped up only when the viewport is at least
+        <code>800px</code> wide AND in landscape orientation — two conditions joined
+        with <code>and</code>.
+    </p>
+
+    <!-- 
+          `min-width` runs the other way: mobile-first CSS is written without a
+          query, then enlarged as the screen grows. This is the recommended
+          approach for most sites. 
+    -->
+    <h2>4. Mobile-first with min-width</h2>
+    <div class="media-side">
+        <div class="side-main">main content</div>
+        <div class="side-aside">sidebar</div>
+    </div>
+    <p class="note">
+        The base styles stack the two boxes vertically (mobile). At
+        <code>700px</code> and up, a <code>min-width</code> query switches to a
+        side-by-side layout. The base is simple, and the query only adds when there
+        is room.
+    </p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* Shared look for this example page */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+
+/* 3. BACKGROUND AND SHADOW: surface treatment. */
+
+/* Helper: add padding so the fills are visible. */
+.padded {
+    padding: 20px;
+    border-radius: 6px;
+}
+
+/* background-color: a flat fill behind the element's content. */
+.bg-color { background-color: #f3e5f5; }
+
+/* background-image with a gradient blends two colors instead of a flat fill. */
+.bg-gradient { background-image: linear-gradient(135deg, rgb(18, 240, 240), rgb(14, 243, 14)); }
+
+/* box-shadow: casts a soft shadow around the box. */
+.b-shadow { box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3); }

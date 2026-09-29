@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+    <h1>CSS Grid: arranging items in rows and columns</h1>
+    <p class="intro">
+        Grid is a two-dimensional layout system: you define columns and rows, then
+        place items into that structure. The examples below grow from simple to advanced.
+    </p>
+
+    <!-- 
+          A grid container is made with `display: grid`. The `grid-template-columns`
+          property asks for three equal columns (the `1fr` unit splits the space evenly).
+          The children (the boxes) flow automatically into cells, row by row. 
+    -->
+    <h2>1. The basics: three equal columns</h2>
+    <div class="grid-3">
+        <div class="cell">1</div>
+        <div class="cell">2</div>
+        <div class="cell">3</div>
+        <div class="cell">4</div>
+        <div class="cell">5</div>
+        <div class="cell">6</div>
+    </div>
+    <p class="note">
+        Six items in a 3-column grid → two rows of three. The <code>gap</code>
+        property adds space between cells.
+    </p>
+
+    <!-- 
+          `grid-template-columns` can mix fixed and flexible sizes. Here the first
+          column is always 100px wide; the next two share whatever space remains.
+          `grid-template-rows` fixes the height of a row. 
+    -->
+    <h2>2. Fixed and flexible columns</h2>
+    <div class="grid-mix">
+        <div class="cell">100px</div>
+        <div class="cell">1fr</div>
+        <div class="cell">2fr</div>
+    </div>
+    <p class="note">
+        The 2fr column is twice as wide as the 1fr column. Try resizing the window
+        to see how the flexible columns shrink or grow while the 100px one stays put.
+    </p>
+
+    <!-- 
+          A grid item can span multiple rows or columns. Relative spans
+          (`grid-column: span 2`) stretch across two column tracks starting
+          from wherever the item lands. 
+    -->
+    <h2>3. Spanning multiple tracks</h2>
+    <div class="grid-span">
+        <div class="cell span-2col">spans 2 columns</div>
+        <div class="cell">3</div>
+        <div class="cell span-2row">spans 2 rows</div>
+        <div class="cell">5</div>
+        <div class="cell">6</div>
+    </div>
+    <p class="note">
+        The green box uses <code>grid-column: span 2</code> (two columns), and the
+        orange one uses <code>grid-row: span 2</code> (two rows).
+    </p>
+
+    <!-- 
+          `grid-template-areas` names regions of the grid, then each item is
+          assigned to a named area. This is great for page layouts like a header,
+          sidebar, content, and footer.
+    -->
+    <h2>4. Named areas: a page layout</h2>
+    <div class="grid-page">
+        <header class="cell">header</header>
+        <aside class="cell">sidebar</aside>
+        <main class="cell">main content</main>
+        <footer class="cell">footer</footer>
+    </div>
+    <p class="note">
+        The layout is drawn in <code>grid-template-areas</code>: header spans the full
+        top row, the sidebar runs down the left column, main sits beside it, and a
+        <code>.</code> marks an empty cell (no item is placed there) before the
+        footer takes the bottom.
+    </p>
+</body>
+</html>

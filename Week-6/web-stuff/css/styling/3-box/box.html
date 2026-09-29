@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Box</title>
+    <link rel="stylesheet" href="box.css">
+</head>
+<body>
+    <h1>The box: size, and inner/outer space</h1>
+
+    <!-- 
+          width and height fix the size of the element's box. The dashed frame
+          lets you see the exact dimensions. 
+     -->
+    <p class="framed box-dim">width and height give me fixed dimensions (260 x 80).</p>
+
+    <!-- 
+          padding adds space INSIDE the box, between the text and the border.
+          Notice the frame box grows to hold the extra padding. 
+     -->
+    <p class="framed box-pad">padding is space inside me, between the text and the edge.</p>
+
+    <!-- 
+          margin adds space OUTSIDE the box, pushing other elements away.
+          Look at the gap this one leaves around its frame. 
+     -->
+    <p class="framed box-margin">margin gives me space all around, outside the border.</p>
+
+    <!-- border draws the outline; border-radius rounds the corners. -->
+    <p class="framed box-border">border outlines me, and border-radius rounds my corners.</p>
+
+    <!-- 
+          padding vs margin, side by side:
+          padding is INSIDE the border (stretches the colored area),
+          margin is OUTSIDE it (just clear space). 
+     -->
+    <p style="background:#e8eaf6;" class="box-pad">padding: the pale blue area includes my padding, so it wraps the text.</p>
+    <p style="background:#e8eaf6;" class="box-margin">margin: the pale blue area is just my content; my margin is the clear space around it.</p>
+</body>
+</html>

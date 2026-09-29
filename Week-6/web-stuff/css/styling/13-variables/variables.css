@@ -1,0 +1,82 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 660px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+h2 {
+    margin-top: 32px;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* GLOBAL DESIGN TOKENS.
+   Declared on :root so every element on the page can use them. Change a value
+   here and every var(--name) usage updates — brand color, spacing, radius,
+   colors. This is the core benefit of custom properties. */
+:root {
+    --brand: #3949ab;        /* primary brand color */
+    --brand-dark: #283593;   /* darker shade for hovers */
+    --accent: #f57c00;       /* secondary/orange accent */
+    --text: #212121;         /* main text */
+    --muted: #f5f5f5;        /* light neutral bg */
+    --radius: 8px;             /* shared border radius */
+    --space: 12px;             /* small spacing unit */
+    --card-pad: 24px;          /* padding used by cards */
+}
+
+/* 1. USING var().
+   The var(--name) function pulls a value from :root. Both buttons reuse the
+   same --radius and --space tokens; only their color tokens differ. */
+.btn-row {
+    display: flex;
+    gap: var(--space);
+    flex-wrap: wrap;
+}
+.btn {
+    border: none;
+    padding: var(--space) 20px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: var(--brand);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: var(--brand-dark);
+}
+.btn-secondary {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+/* 2. FALLBACKS and per-element override.
+   Fallback: var(--missing, #888) uses "#888" because --missing is not defined.
+   Override: .tight re-declares --card-pad scoped to itself, so it wins over the
+   :root value. Variables cascade like any property. */
+.card {
+    background-color: var(--muted);
+    border-left: 4px solid var(--brand);
+    padding: var(--card-pad);
+    border-radius: var(--radius);
+    margin-bottom: var(--space);
+
+    /* Uses a fallback: --missing has no value, so #ddd is used for the border. */
+    border: 1px solid var(--missing, #ddd);
+}
+.card.tight {
+    --card-pad: 8px;   /* scoped override — smaller padding for just this card */
+    border-left-color: var(--accent);
+}

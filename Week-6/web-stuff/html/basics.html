@@ -1,0 +1,50 @@
+<!-- DOCTYPE: Tells the browser "this is an HTML5 document." It must be the very first line. -->
+<!DOCTYPE html>
+
+<!-- 
+    TAGS vs ELEMENTS: A TAG is the raw markup you type, like <p> or </p>. An ELEMENT is the whole thing, 
+    the opening tag + its content + the closing tag, that the browser turns into something on the page. 
+
+    ATTRIBUTES are the extras you write INSIDE the opening tag to give an element extra info. 
+    They follow the pattern name="value", like the lang="en" on <html>. Attributes are how elements 
+    get configured: the element is the thing itself, the attributes tune how it behaves.
+-->
+
+<!-- 
+    <html> is the root element that wraps EVERYTHING. The lang="en" attribute tells browsers and screen readers 
+    the page is in English. 
+-->
+<html lang="en">
+
+<!-- <head> holds META-DATA: info about the page that visitors don't see on screen. -->
+<head>
+
+    <!-- 
+        charset="UTF-8" sets the text encoding so special characters (é, 😀, €) display correctly 
+        instead of as gibberish. 
+    -->
+    <meta charset="UTF-8">
+
+    <!-- viewport makes the page scale properly on mobile/tablet devices. Keep this on every page. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+        <title> is the text that appears in the browser TAB and the search-engine result. Change it to 
+        describe your page.
+    -->
+    <title>HTML Basics</title>
+
+</head>
+
+<!-- <body> is where all the VISIBLE content goes: text, images, buttons, links — everything the user sees. -->
+<body>
+
+    <!-- 
+        VOID tags are a special kind: they have no content and no closing tag, because there's nothing to put 
+        inside them. <br> (a line break) is a void tag, as are the <meta> tags above. A regular (non-void) 
+        tag like <p> comes as a pair, an opening tag and a closing tag, because it wraps content inside it. 
+    -->
+    <p>This is the content <br> of the page</p>
+    
+</body>
+</html>

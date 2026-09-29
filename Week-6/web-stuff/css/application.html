@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applying CSS</title>
+
+    <!-- The three ways to add CSS. All live together here so you can compare them:
+         - EXTERNAL: rules in a separate .css file, pulled in with <link> below.
+         - INTERNAL: rules in a <style> block right in this page's <head>.
+         - INLINE: a style attribute written directly on one element. -->
+
+    <!-- <link> loads an external stylesheet. The href points at external.css,
+         which lives in the same folder as this page. This is the way you'll
+         style real sites most of the time: one CSS file can style many pages. -->
+    <link rel="stylesheet" href="external.css">
+
+    <!-- <style> holds internal CSS: rules written here apply just to this page. -->
+    <style>
+        /* This rule targets every <p> in this document. */
+        p {
+            color: teal;
+        }
+
+        /* This rule targets any element whose class is "internal-note". */
+        .internal-note {
+            background-color: #e0f7e9;
+            border-left: 4px solid #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <h1>Applying CSS three ways</h1>
+
+    <!-- INTERNAL example: this paragraph is coloured by the p rule
+         in the <style> block above. No styling is written on the tag itself. -->
+    <p>This paragraph is styled by internal CSS (the p rule in style).</p>
+
+    <!-- INTERNAL example: this box gets its background and border from the
+         .internal-note rule in the <style> block, matched by its class. -->
+    <p class="internal-note">This box is styled by internal CSS (the .internal-note class rule).</p>
+
+    <!-- EXTERNAL example: this paragraph's rules live in external.css,
+         loaded by the <link> tag. The class comes from that stylesheet. -->
+    <p class="external-note">This box is styled by external CSS (the .external-note rule in external.css).</p>
+
+    <!-- INLINE example: the style attribute is written straight on the tag.
+         It only affects THIS element, nothing else. Inline styling is handy
+         for a quick one-off, but it's the least reusable way to style. -->
+    <p style="color: #c62828; font-weight: bold;">This paragraph is styled inline, via the style attribute.</p>
+
+    <!-- CASCADE: inline is prioritized over internal and external, internal and external is  
+         determined by specificity rules-->
+</body>
+</html>

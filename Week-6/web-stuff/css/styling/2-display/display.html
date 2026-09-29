@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <link rel="stylesheet" href="display.css">
+</head>
+<body>
+    <h1>display</h1>
+    <!-- Every example also has the .demo-box helper (border + pale fill) so
+         you can see each element's footprint on the page. -->
+
+    <!-- display: block makes an element a full-width box on its own line. -->
+    <p class="demo-box d-block">block: I take the whole line, so the next box starts below.</p>
+
+    <!-- display: inline keeps an element inside the line, just wide enough
+         for its content. Several inline boxes sit side by side. -->
+    <span class="demo-box d-inline">inline box 1</span>
+    <span class="demo-box d-inline">inline box 2</span>
+    <span class="demo-box d-inline">inline box 3</span>
+    <p>...and here the inline spans above shrank to fit their content.</p>
+
+    <!-- display: inline-block flows inline, but honors width like a block. -->
+    <span class="demo-box d-inline-block">inline-block, width 200px</span>
+    <span class="demo-box d-inline-block">inline-block, width 200px</span>
+
+    <!-- display: none hides the element entirely, leaving no space.
+         This element is in the page but not visible. -->
+    <p class="demo-box d-none">display: none — you can't see me, no room is left.</p>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* Shared look for this example page: a readable body and base spacing. */
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 760px;
+    margin: 24px auto;
+    padding: 0 16px;
+    color: #212121;
+}
+.intro {
+    color: #555;
+}
+h2 {
+    margin-top: 32px;
+}
+code {
+    background: #eceff1;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.note {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* A single grid cell: colored box so you can see the tracks clearly.
+   All examples reuse this class. */
+.cell {
+    background-color: #4a90d9;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+/* 1. THE BASICS: three equal columns.
+   display: grid         → this element becomes a grid container.
+   grid-template-columns → how many columns and how wide.
+   1fr, 1fr, 1fr         → three flexible tracks of equal width.
+   gap                   → spacing between cells (here horizontal only). */
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+/* 2. FIXED AND FLEXIBLE COLUMNS.
+   The fr unit shares the leftover space after fixed sizes are taken.
+   100px 1fr 2fr: the first track is always 100px; remaining space is
+   divided in three, with the 2fr track getting two-thirds of it. */
+.grid-mix {
+    display: grid;
+    grid-template-columns: 100px 1fr 2fr;
+    gap: 12px;
+}
+
+/* 3. SPANNING MULTIPLE TRACKS.
+   Use relative spans so an item stretches across however many tracks it
+   needs, starting from wherever it gets placed:
+     grid-column: span 2  → cover two columns.
+     grid-row:    span 2  → cover two rows.
+   (An absolute span like 1 / 3 means "from line 1 to line 3", which forces
+   the item to start at the top — here that collides with the top row and
+   the span collapses, so relative spans are safer when auto-placing.) */
+.grid-span {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.span-2col {
+    grid-column: span 2;  /* stretch across both columns of the top row */
+    background-color: #4caf50;
+}
+.span-2row {
+    grid-row: span 2;     /* stretch down across two rows in column 2 */
+    background-color: #ff9800;
+}
+
+/* 4. NAMED AREAS: a page layout.
+   grid-template-areas draws the layout as a mini-diagram. Each name is used
+   once per column in a row. Then every child is told its area with
+   grid-area: <name>.
+   Row 1: header spans both columns (shown as "header header").
+   Rows 2–3: sidebar runs down column 1; main sits beside it in row 2,
+             and the "." in row 3 is an EMPTY cell (no item assigned to it).
+   Row 4: footer spans both columns. */
+.grid-page {
+    display: grid;
+    grid-template-areas:
+        "header  header"
+        "sidebar main"
+        "sidebar ."
+        "footer  footer";
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr 1fr auto;
+    gap: 12px;
+    min-height: 240px;
+}
+.grid-page .cell:nth-child(1) { grid-area: header; }
+.grid-page .cell:nth-child(2) { grid-area: sidebar; }
+.grid-page .cell:nth-child(3) { grid-area: main; }
+.grid-page .cell:nth-child(4) { grid-area: footer; }
+
+/* Make the page layout's cells more visually distinct. */
+.grid-page header { background-color: #673ab7; }
+.grid-page aside  { background-color: #009688; }
+.grid-page main   { background-color: #3f51b5; }
+.grid-page footer { background-color: #f44336; }
