@@ -26,6 +26,8 @@ function scopeDemo() {
         // BLOCK scope: only visible inside these { } braces.
         let blockVar = 'I am block-scoped';
         console.log('Inside the block:', blockVar); // works
+        console.log("Inside the block:", functionVar);
+        console.log("Inside the block:", globalVar);
     }
 
     console.log('Inside the function:', functionVar); // works

@@ -15,7 +15,9 @@
 console.log('=== 1. DATATYPES ===');
 
 // Primitives: single, immutable values.
-console.log(typeof 'hello');   // "string"
+// Note the strings below can be made wrapped in ' or ": both are valid
+console.log(typeof '"hello"');   // "string"
+console.log('"hello"') // note we don't need the ;, but it is good practice to include it anyways
 console.log(typeof 42);        // "number"
 console.log(typeof 3.14);      // "number" (no separate float type)
 console.log(typeof true);      // "boolean"
@@ -23,8 +25,8 @@ console.log(typeof undefined); // "undefined"
 console.log(typeof null);      // "object"  <-- a famous JS quirk!
 
 // Objects: collections of key/value pairs (arrays and functions too).
-console.log(typeof { name: 'Alice' }); // "object"
-console.log(typeof [1, 2, 3]);         // "object" (arrays are objects)
+console.log(typeof { name: "'Alice'" }); // "object" This is an object literal: just key value pairs
+console.log(typeof [1, '2', 3]);         // "object" (arrays are objects) Arrays act like ArrayLists from java but don't limit the type they hold
 console.log(typeof function () {});    // "function"
 
 // ------------------------------------------------------------------
@@ -59,6 +61,7 @@ console.log('The answer is ' + 42); // "The answer is 42"
 
 // The - operator only works on numbers, so it converts to a number.
 console.log('10' - 5);  // 5  (string coerced to number)
+console.log("ten" - 5); // this returns NaN
 
 // Loose equality (==) converts both sides before comparing.
 console.log(5 == '5');  // true  (both become numbers)

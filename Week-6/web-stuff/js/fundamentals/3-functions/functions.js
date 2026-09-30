@@ -24,6 +24,7 @@ function add(a, b) {
     return a + b;
 }
 console.log('add(2, 3):', add(2, 3)); // 5
+console.log('add("2", "3":', add('2','3'));
 
 // Hoisting in action: this call works even though greet is defined below.
 greet(); // "Hello from a declaration!"
@@ -75,6 +76,10 @@ const describe = (name, age) => {
 };
 console.log(describe('Alice', 30)); // "Hi, I am Alice and I am 30 years old."
 
+// Note: this arrow function does not return anything
+const noReturnDescribe = name => console.log("Hi! My name is", name);
+noReturnDescribe('Billy');
+
 // ------------------------------------------------------------------
 // 4. DEFAULT PARAMETERS
 // ------------------------------------------------------------------
@@ -87,7 +92,7 @@ function createUser(name, role = 'Guest', status = 'Active') {
 createUser('Alice');              // Role: Guest, Status: Active
 createUser('Bob', 'Admin');       // Role: Admin, Status: Active
 createUser('Charlie', undefined); // Role: Guest (undefined triggers the default)
-
+createUser('Slagathor', 'Supreme Ruler', 'Brooding', 'some extra value') // Note you can provide extra arguments
 // ------------------------------------------------------------------
 // 5. OBJECT METHODS (SHORTHAND)
 // ------------------------------------------------------------------
