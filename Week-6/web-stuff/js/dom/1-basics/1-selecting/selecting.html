@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecting Elements — Finding Nodes in the DOM</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        .wrapper {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecting elements: finding nodes in the DOM</h1>
+
+    <p class="note">
+        This page is interactive. Click the buttons and open the console
+        (F12) to see what each selection method finds. The JavaScript lives
+        in <code>selecting.js</code> — read its comments for the details.
+    </p>
+
+    <!--
+        Before you can change anything in the DOM, you must first FIND it.
+        JavaScript gives you five main ways to grab elements. Each button
+        below uses one method and logs what it found to the console.
+    -->
+    <h2>Try each selection method</h2>
+    <p>
+        <button id="selectById">getElementById</button>
+        <button id="selectByClass">getElementsByClassName</button>
+        <button id="selectByTag">getElementsByTagName</button>
+        <button id="selectQuery">querySelector</button>
+        <button id="selectQueryAll">querySelectorAll</button>
+    </p>
+
+    <!-- The elements the buttons will try to find. -->
+    <div id="main-container" class="wrapper">
+        <h3 class="title">A title</h3>
+        <p class="description">First description</p>
+        <p class="description">Second description</p>
+        <ul class="list">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+        </ul>
+    </div>
+
+    <script src="selecting.js"></script>
+</body>
+</html>

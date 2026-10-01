@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Headers — Metadata for Requests &amp; Responses</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 680px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f1f3f4;
+        }
+        /* The results panel showing the real response headers. */
+        .result {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result .hdr {
+            padding: 2px 0;
+        }
+        .result .hdr b {
+            color: #ffd54f;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTTP headers: metadata for requests &amp; responses</h1>
+
+    <p class="note">
+        Headers are key-value pairs that travel with every request and
+        response, carrying extra information — what the client wants, what
+        type the body is, how to cache it, and so on. The button below
+        sends a real request and prints the <em>actual</em> response
+        headers the server sends back.
+    </p>
+
+    <!--
+        RESPONSE HEADERS
+        Sent by the server to describe the response it is returning.
+    -->
+    <h2>Common response headers</h2>
+    <table>
+        <tr><th>Header</th><th>What it tells the client</th></tr>
+        <tr><td><code>Server</code></td><td>What software the server runs.</td></tr>
+        <tr><td><code>Content-Type</code></td><td>The media type of the body (e.g. <code>application/json</code>).</td></tr>
+        <tr><td><code>Content-Length</code></td><td>The size of the response body in bytes.</td></tr>
+        <tr><td><code>Set-Cookie</code></td><td>Sends a cookie for the browser to store.</td></tr>
+        <tr><td><code>Cache-Control</code></td><td>How (and whether) browsers/proxies may cache the response.</td></tr>
+    </table>
+
+    <!--
+        REQUEST HEADERS
+        Sent by the client to give the server context about the request.
+    -->
+    <h2>Common request headers</h2>
+    <table>
+        <tr><th>Header</th><th>What it tells the server</th></tr>
+        <tr><td><code>Host</code></td><td>The domain name of the server being contacted.</td></tr>
+        <tr><td><code>User-Agent</code></td><td>What browser/OS the client is using.</td></tr>
+        <tr><td><code>Accept</code></td><td>The content types the client can handle (e.g. <code>application/json</code>).</td></tr>
+        <tr><td><code>Authorization</code></td><td>Credentials for authenticating the client.</td></tr>
+        <tr><td><code>Content-Type</code></td><td>The media type of the request body (when sending data).</td></tr>
+    </table>
+
+    <!--
+        LIVE DEMO
+        Fetch a real Pokémon and print every response header the server
+        returns, so you can see headers in the wild rather than just read
+        about them.
+    -->
+    <h2>Live: real response headers</h2>
+    <p>
+        <button type="button" id="fetchBtn">Fetch "pikachu" &amp; show headers</button>
+    </p>
+    <div class="result" id="result">Click the button to fetch and inspect the response headers.</div>
+
+    <script src="headers.js"></script>
+</body>
+</html>

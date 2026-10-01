@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversing the DOM — Moving Through the Tree</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The element currently being "visited" is highlighted. */
+        .current {
+            outline: 3px solid #1a73e8;
+            outline-offset: 2px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 12px 0;
+        }
+        .status {
+            background: #f1f3f4;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 12px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traversing the DOM: moving through the tree</h1>
+
+    <p class="note">
+        This page is interactive. Use the buttons to move a "current"
+        highlight through the nested structure below, and watch the status
+        bar update. The JavaScript lives in <code>traversal.js</code> —
+        read its comments for the details.
+    </p>
+
+    <!--
+        Traversal means moving from one element to a RELATED one based on
+        their position in the tree: up to a parent, down to a child, or
+        sideways to a sibling. The buttons below move a highlight around
+        the nested structure, and the status bar shows where you are.
+    -->
+    <h2>Move through the tree</h2>
+    <p>
+        <button id="toParent">Up: parentElement</button>
+        <button id="toFirstChild">Down: firstElementChild</button>
+        <button id="toLastChild">Down: lastElementChild</button>
+        <button id="toNext">Side: nextElementSibling</button>
+        <button id="toPrev">Side: previousElementSibling</button>
+        <button id="toClosest">Up: closest()</button>
+        <button id="reset">Reset</button>
+    </p>
+
+    <div class="status" id="status">Current: none (click Reset to start)</div>
+
+    <!-- The nested structure we will walk through. -->
+    <div class="card" id="parent">
+        <h3>Parent card</h3>
+        <p id="firstChild">First child paragraph</p>
+        <p id="middleChild">Middle child paragraph</p>
+        <p id="lastChild">Last child paragraph</p>
+    </div>
+
+    <script src="traversal.js"></script>
+</body>
+</html>

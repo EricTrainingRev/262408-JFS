@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON — The Language of APIs</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The box where you can paste in JSON and edit it. */
+        textarea {
+            font-family: monospace;
+            font-size: 13px;
+            width: 100%;
+            box-sizing: border-box;
+            max-height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: vertical;
+        }
+        /* The results panel showing the parsed/stringified result. */
+        .result {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        .result .ok { color: #81c995; }
+        .result .err { color: #f28b82; }
+    </style>
+</head>
+<body>
+    <h1>JSON: the language of APIs</h1>
+
+    <p class="note">
+        JSON is the text format that almost every web API uses to send data.
+        Over the network it is just a <em>string</em>. To work with it in
+        JavaScript you convert it to a real object with
+        <code>JSON.parse()</code>, and to send data <em>to</em> a server you
+        convert an object back into text with <code>JSON.stringify()</code>.
+        This page lets you do both. The JavaScript lives in
+        <code>json.js</code> — read its comments for the details.
+    </p>
+
+    <!--
+        DESERIALIZATION: TEXT -> OBJECT (JSON.parse)
+        A server always sends JSON to you as a plain string. JSON.parse
+        turns that string into a JavaScript object you can actually use
+        (read properties, loop over arrays, etc). If the text isn't valid
+        JSON, JSON.parse throws an error — you can watch that happen below
+        by breaking the JSON in the textarea.
+    -->
+    <h2>1. Deserialize: text &rarr; object (<code>JSON.parse</code>)</h2>
+    <p>Paste any JSON below (edit the pre-filled example), then click Parse.</p>
+    <textarea id="input" rows="7">{
+  "name": "Pikachu",
+  "type": "electric",
+  "pokedex": 25,
+  "evolves": true,
+  "moves": ["quick attack", "thunderbolt"]
+}</textarea>
+    <p>
+        <button type="button" id="parseBtn">Parse this JSON</button>
+    </p>
+    <div class="result" id="parseResult">
+        The parsed result will appear here.
+    </div>
+
+    <!--
+        SERIALIZATION: OBJECT -> TEXT (JSON.stringify)
+        When you SEND data in a fetch body, you must flip it back the other
+        way: JSON.stringify turns a JavaScript object into a JSON string so
+        it can travel over the network. The two-space indent is optional
+        (it makes the output pretty for humans); the server would normally
+        receive the compact one-line version.
+    -->
+    <h2>2. Serialize: object &rarr; text (<code>JSON.stringify</code>)</h2>
+    <p>
+        A button to turn the object below into the JSON string that would
+        actually be sent across the network.
+    </p>
+    <p>
+        <button type="button" id="stringifyBtn">Stringify this object</button>
+    </p>
+    <div class="result" id="strResult">
+        The stringified result will appear here.
+    </div>
+
+    <!--
+        WHY THIS MATTERS FOR fetch
+        This is the exact same pair of operations the Fetch API does for
+        you. When you call response.json() the browser is running
+        JSON.parse under the hood; when you pass body: JSON.stringify(obj)
+        to a fetch you are using it to package your data. So mastering
+        these two methods is mastering the data half of every HTTP request.
+    -->
+    <div class="note">
+        <strong>Why this matters for <code>fetch</code>:</strong>
+        when a request comes back and you call
+        <code>response.json()</code>, the browser is doing
+        <code>JSON.parse</code> for you. And when you send data with
+        <code>fetch(url, { body: JSON.stringify(obj) })</code>, you are
+        using <code>JSON.stringify</code> to turn your object into the text
+        the server expects.
+    </div>
+
+    <script src="json.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubbling &amp; Capturing — How Events Travel the Tree</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The log panel where events are printed as they fire. */
+        .log {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            min-height: 120px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+        .log div {
+            padding: 1px 0;
+        }
+        /* Nested boxes for the bubbling / capturing demo. */
+        .box {
+            border: 2px solid #1a73e8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        .box .box {
+            border-color: #f9ab00;
+        }
+        .box .box .box {
+            border-color: #188038;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bubbling &amp; capturing: how events travel the tree</h1>
+
+    <p class="note">
+        This page is interactive. Click the nested boxes and watch the log
+        panel — it shows the exact order events fire in. The JavaScript
+        lives in <code>bubbling-capturing.js</code> — read its comments
+        for the details.
+    </p>
+
+    <!--
+        When an event fires on an element, it doesn't just trigger there.
+        It travels through the DOM tree in two phases:
+          CAPTURING (trickle down): window -> ... -> target
+          BUBBLING  (bubble up):    target -> ... -> window
+        Each box below has BOTH a capturing and a bubbling listener, so
+        clicking the innermost box shows the full journey.
+    -->
+    <h2>Click the innermost box</h2>
+    <p class="note" style="background:#fef7e0;border-color:#f9ab00;">
+        Watch the log: capturing fires outer first (travelling down),
+        then bubbling fires inner first (travelling up).
+    </p>
+    <div class="box" id="outer">
+        OUTER
+        <div class="box" id="middle">
+            MIDDLE
+            <div class="box" id="inner">
+                INNER
+            </div>
+        </div>
+    </div>
+
+    <!--
+        STOPPING THE FLOW
+        Sometimes you want to stop an event from travelling further.
+        stopPropagation stops the journey; preventDefault stops the
+        browser's default action (like a link navigating).
+    -->
+    <h2>Stopping the flow</h2>
+    <p>
+        <button type="button" id="stopBtn">Stop propagation</button>
+        <a href="https://example.com" id="preventLink">This link won't navigate</a>
+    </p>
+
+    <!-- The live log panel. -->
+    <h2>Event log</h2>
+    <div class="log" id="log"></div>
+
+    <script src="bubbling-capturing.js"></script>
+</body>
+</html>

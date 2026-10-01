@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation — One Listener for Many Elements</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The list whose items we delegate clicks on. */
+        .list {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px;
+            margin: 12px 0;
+            list-style: none;
+        }
+        .list li {
+            padding: 8px 10px;
+            margin: 4px 0;
+            border-radius: 4px;
+            background: #f1f3f4;
+            cursor: pointer;
+        }
+        .list li:hover {
+            background: #e8f0fe;
+        }
+        /* Keep a nested <p> (used to demo closest()) visually aligned
+           with the plain-text items. */
+        .list li p {
+            margin: 0;
+        }
+        /* The log panel where events are printed as they fire. */
+        .log {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            min-height: 120px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+        .log div {
+            padding: 1px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event delegation: one listener for many elements</h1>
+
+    <p class="note">
+        This page is interactive. Click any item in the list, and add new
+        ones — every item responds, even the ones added after the page
+        loaded. The JavaScript lives in <code>event-delegation.js</code> —
+        read its comments for the details.
+    </p>
+
+    <!--
+        EVENT DELEGATION
+        Instead of attaching a click listener to every <li> (slow and
+        memory-heavy, and it wouldn't work for items added later), we
+        attach ONE listener to the <ul>. Because clicks BUBBLE up the
+        tree, the parent catches every item's click. We use
+        e.target.closest('li') to figure out which item was clicked.
+    -->
+    <h2>Click an item, or add a new one</h2>
+    <p>
+        <button type="button" id="addItem">Add a new item</button>
+    </p>
+    <ul class="list" id="itemList">
+        <li>
+            <!-- a nested child element, to show closest() resolving a
+                 click that lands inside the <li> rather than on it -->
+            <p>Item 1</p>
+        </li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <!-- The live log panel. -->
+    <h2>Event log</h2>
+    <div class="log" id="log"></div>
+
+    <script src="event-delegation.js"></script>
+</body>
+</html>

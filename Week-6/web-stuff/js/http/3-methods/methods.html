@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Methods — The Verbs of the Web</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        /* Lays the safe/idempotent notes side by side instead of stacked. */
+        .note-pair {
+            display: flex;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .note-pair .note {
+            flex: 1;
+            margin: 0;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The results panel showing what each request returned. */
+        .result {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+        th {
+            background: #f1f3f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTTP methods: the verbs of the web</h1>
+
+    <p class="note">
+        This page is interactive (needs internet). Click each method to send
+        a real request to a test API and watch the response. The JavaScript
+        lives in <code>methods.js</code> — read its comments for the details.
+    </p>
+
+    <!--
+        HTTP METHODS (VERBS)
+        Each method defines a different intended action on a resource:
+        GET reads, POST creates, PUT replaces, PATCH partially updates,
+        and DELETE removes. The buttons send real requests so you can see
+        the HTTP status each one returns.
+    -->
+    <h2>Send a request</h2>
+    <p>
+        <button type="button" id="getBtn">GET</button>
+        <button type="button" id="postBtn">POST</button>
+        <button type="button" id="putBtn">PUT</button>
+        <button type="button" id="patchBtn">PATCH</button>
+        <button type="button" id="deleteBtn">DELETE</button>
+    </p>
+
+    <!-- The response from the last request is printed here. -->
+    <h2>Response</h2>
+    <div class="result" id="result">Click a method above to send a request.</div>
+
+    <!-- The methods and their key properties are shown here. -->
+    <h2>Reference</h2>
+    <table>
+        <tr><th>Method</th><th>Safe?</th><th>Idempotent?</th><th>Action</th></tr>
+        <tr><td>GET</td><td>yes</td><td>yes</td><td>Retrieve a resource</td></tr>
+        <tr><td>POST</td><td>no</td><td>no</td><td>Create a resource</td></tr>
+        <tr><td>PUT</td><td>no</td><td>yes</td><td>Replace a resource</td></tr>
+        <tr><td>PATCH</td><td>no</td><td>no</td><td>Partially update</td></tr>
+        <tr><td>DELETE</td><td>no</td><td>yes</td><td>Remove a resource</td></tr>
+    </table>
+
+    <!--
+        SAFE vs IDEMPOTENT
+        These two words are often confused. A method is "safe" when it
+        never changes the server's data — you can call it as many times
+        as you like with zero side effects. "Idempotent" means calling
+        it multiple times produces the same result as calling it once
+        (it's about repeat calls, not about change).
+    -->
+    <h2>What does "safe" mean?</h2>
+    <div class="note-pair">
+    <p class="note">
+        <strong>Safe</strong> = the request never modifies the server's
+        data. Reading a page or a post doesn't change anything, so
+        <code>GET</code> and <code>HEAD</code> are safe. <code>POST</code>,
+        <code>PUT</code>, <code>PATCH</code>, and <code>DELETE</code> all
+        change or remove data, so they are <em>unsafe</em>.
+    </p>
+    <p class="note">
+        <strong>Idempotent</strong> is a separate idea: repeating the same
+        request multiple times has the same effect as doing it once.
+        <code>GET</code>, <code>PUT</code>, and <code>DELETE</code> are
+        idempotent — sending a <code>DELETE</code> twice is still just one
+        deletion. <code>POST</code> is <em>not</em> idempotent: two identical
+        POSTs create two separate resources, and <code>PATCH</code> isn't
+        either, because each patch can build on the last.
+    </p>
+</div>
+
+    <script src="methods.js"></script>
+</body>
+</html>

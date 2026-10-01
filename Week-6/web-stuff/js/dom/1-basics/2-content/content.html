@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Content — textContent vs innerHTML</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Changing content: textContent vs innerHTML</h1>
+
+    <p class="note">
+        This page is interactive. Click the buttons and watch the card
+        below change. The JavaScript lives in <code>content.js</code> —
+        read its comments for the details.
+    </p>
+
+    <!--
+        There are two main ways to change what's inside an element, and
+        they behave very differently. textContent treats the string as
+        plain text (safe). innerHTML parses it as HTML (powerful but
+        risky). The buttons below demonstrate both.
+    -->
+    <h2>Set the card's content</h2>
+    <p>
+        <button id="setText">Set textContent</button>
+        <button id="setHtml">Set innerHTML</button>
+    </p>
+    <div class="card">
+        <p id="contentTarget">Original text.</p>
+    </div>
+
+    <!--
+        The second part of this page demonstrates LIVE vs STATIC
+        collections. We grab the list items two ways up front, then add
+        and remove items. The live HTMLCollection updates; the static
+        NodeList snapshot does not.
+    -->
+    <h2>Live vs static collections</h2>
+    <p>
+        <button id="addItem">Add a new item</button>
+        <button id="removeItem">Remove last item</button>
+    </p>
+    <ul class="list">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+    </ul>
+
+    <script src="content.js"></script>
+</body>
+</html>

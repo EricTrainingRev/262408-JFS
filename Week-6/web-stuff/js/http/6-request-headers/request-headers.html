@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Headers — Sending Metadata</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        input[type="text"] {
+            font: inherit;
+            padding: 6px 8px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f1f3f4;
+        }
+        /* The list of headers you've added. */
+        .added {
+            margin: 8px 0;
+        }
+        .added .hdr {
+            display: inline-block;
+            background: #eceff1;
+            border-radius: 12px;
+            padding: 3px 10px;
+            margin: 3px 4px 3px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .added .hdr b {
+            color: #1a73e8;
+        }
+        .added .hdr button {
+            margin: 0 0 0 6px;
+            padding: 0 5px;
+            border: none;
+            background: transparent;
+            color: #d93025;
+        }
+        /* The results panel showing what the server actually received. */
+        .result {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result .mine    { color: #ffd54f; }
+        .result .default { color: #9aa0a6; }
+    </style>
+</head>
+<body>
+    <h1>Request headers: sending metadata</h1>
+
+    <p class="note">
+        Request headers are key-value pairs your browser sends <em>with</em>
+        a request, giving the server context: who you are, what you want,
+        and any credentials you're presenting. This page lets you add your
+        own headers and <em>prove</em> they travel to the server — the
+        request goes to <code>httpbin.org/anything</code>, which obediently
+        echoes back the exact headers it received. The JavaScript lives in
+        <code>request-headers.js</code>.
+    </p>
+
+    <!--
+        REQUEST HEADERS (reference)
+        Sent by the client to describe the request that's on its way.
+    -->
+    <h2>Common request headers</h2>
+    <table>
+        <tr><th>Header</th><th>What it tells the server</th></tr>
+        <tr><td><code>Host</code></td><td>The domain being contacted (set automatically).</td></tr>
+        <tr><td><code>User-Agent</code></td><td>What browser/OS the client is using (set automatically).</td></tr>
+        <tr><td><code>Accept</code></td><td>The content types the client can handle.</td></tr>
+        <tr><td><code>Authorization</code></td><td>Credentials (e.g. <code>Bearer &lt;token&gt;</code>) for logging in.</td></tr>
+        <tr><td><code>Content-Type</code></td><td>The type of the request body when sending data.</td></tr>
+    </table>
+
+    <!--
+        BUILD YOUR REQUEST
+        Type a header name and value (or click a preset), click Add, then
+        Send. We fetch httpbin.org/anything with those headers; the server
+        echoes back the headers it actually saw, so you can confirm yours
+        arrived on the wire.
+    -->
+    <h2>Build a request with your own headers</h2>
+    <p>
+        <input type="text" id="nameInput" placeholder="Header name, e.g. X-API-Key">
+        <input type="text" id="valueInput" placeholder="Header value, e.g. demo-123">
+        <button type="button" id="addBtn">Add header</button>
+    </p>
+    <p>
+        Presets:
+        <button type="button" data-preset="Authorization" data-value="Bearer demo-token-abc">Authorization</button>
+        <button type="button" data-preset="X-API-Key" data-value="my-secret-key">X-API-Key</button>
+        <button type="button" data-preset="Accept" data-value="application/json">Accept</button>
+    </p>
+    <p>
+        <button type="button" id="sendBtn">Send request to httpbin &amp; see what arrives</button>
+    </p>
+
+    <!-- The headers you've collected, with a way to remove each one. -->
+    <div class="added" id="added"></div>
+
+    <!--
+        FORBIDDEN HEADERS
+        Not every header can be set from JavaScript. A few -- Host,
+        User-Agent, Cookie, Content-Length, Referer -- are "forbidden":
+        the browser sets them itself and silently IGNORES your attempt to
+        override them (good for security). That's why the echo below will
+        show the browser's real User-Agent, not one you typed.
+    -->
+    <div class="note">
+        <strong>Heads-up:</strong> you can't override every header from
+        JavaScript. A short list — <code>Host</code>, <code>User-Agent</code>,
+        <code>Cookie</code>, <code>Content-Length</code>, <code>Referer</code> —
+        is <em>forbidden</em>; the browser controls those itself and
+        silently ignores your attempt to set them. So the echoed
+        <code>User-Agent</code> below will be the browser's real one.
+    </div>
+
+    <h2>What the server received</h2>
+    <div class="result" id="result">Add a header (or two), then click Send.</div>
+
+    <script src="request-headers.js"></script>
+</body>
+</html>

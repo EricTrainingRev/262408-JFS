@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises &amp; Async/Await — Handling the Wait</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* The event log: every step is appended here in real order so you
+           can SEE the asynchronous flow instead of guessing it. */
+        .log {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        .log .pending { color: #8ab4f8; }
+        .log .ok      { color: #81c995; }
+        .log .err     { color: #f28b82; }
+        .log .io      { color: #ffd54f; }
+    </style>
+</head>
+<body>
+    <h1>Promises &amp; async/await: handling the wait</h1>
+
+    <p class="note">
+        A network request is <em>asynchronous</em> — it takes time, and
+        JavaScript doesn't want to freeze the whole page while waiting.
+        A <strong>Promise</strong> is an object that stands in for a value
+        that hasn't arrived yet. <strong>async/await</strong> is a cleaner
+        way to write the same code. Every step here is logged in order so
+        you can <em>see</em> what runs when. Open
+        <code>promises-async-await.js</code> for the full code.
+    </p>
+
+    <!--
+        PROMISE MECHANICS
+        A Promise is created in a "pending" state. It later becomes either
+        "fulfilled" (it resolved with a value) or "rejected" (it failed).
+        You attach .then() to run code on fulfillment and .catch() to run
+        code on rejection. The promise below waits a short moment, then
+        resolves — watch how the log order differs from how the code reads.
+    -->
+    <h2>1. Promise states: pending &rarr; fulfilled</h2>
+    <p>
+        <button type="button" id="resolveBtn">Resolve a promise</button>
+        <button type="button" id="rejectBtn">Reject a promise</button>
+    </p>
+
+    <!--
+        ASYNC/AWAIT
+        async/await is "syntactic sugar" built on top of Promises. Mark a
+        function with `async` and it always returns a Promise; inside it,
+        `await` pauses that function until a Promise settles. You wrap the
+        await calls in try/catch to handle errors.
+    -->
+    <h2>2. The same thing with async/await</h2>
+    <p>
+        <button type="button" id="awaitBtn">Run an async/await demo</button>
+    </p>
+
+    <!--
+        REAL HTTP WITH fetch
+        Here is the payoff: real network requests, written two ways.
+        The first uses a .then() chain; the second uses async/await.
+        Both fetch the same data from a real test API and log it.
+    -->
+    <h2>3. Real HTTP requests, two ways</h2>
+    <p>
+        <button type="button" id="fetchThenBtn">fetch with .then()</button>
+        <button type="button" id="fetchAwaitBtn">fetch with await</button>
+    </p>
+
+    <h2>Log</h2>
+    <div class="log" id="log">Click a button above to watch the event flow.</div>
+
+    <script src="promises-async-await.js"></script>
+</body>
+</html>

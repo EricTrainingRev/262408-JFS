@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events — Common Events &amp; the Event Object</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        input {
+            font: inherit;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* The log panel where events are printed as they fire. */
+        .log {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            min-height: 120px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+        .log div {
+            padding: 1px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Events: common events &amp; the event object</h1>
+
+    <p class="note">
+        This page is interactive. Everything you do here is logged to the
+        panel below, so you can watch events fire in real time. The
+        JavaScript lives in <code>events.js</code> — read its comments
+        for the details.
+    </p>
+
+    <!--
+        An EVENT is a signal that something happened (a click, a keypress,
+        a form submit). An EVENT LISTENER is a function that "listens" for
+        that signal and runs in response. This page demonstrates the most
+        common event types and the event object they pass to your code.
+    -->
+    <h2>Try the common events</h2>
+    <form id="demoForm">
+        <label for="nameInput">Type something:</label>
+        <input type="text" id="nameInput" placeholder="type here...">
+        <button type="submit">Submit</button>
+    </form>
+    <p>
+        <button type="button" id="clickBtn">Click / double-click me</button>
+    </p>
+
+    <!--
+        SINGLE vs DOUBLE CLICK
+        A double-click always fires two click events first, so you can't
+        tell them apart by listening to click and dblclick separately.
+        This button uses a timer to disambiguate: it waits ~250ms after
+        a click, and only treats it as a single click if no second click
+        arrives in that window.
+    -->
+    <h2>Single vs double click</h2>
+    <p class="note" style="background:#fef7e0;border-color:#f9ab00;">
+        Click this button once, then double-click it. A single click is
+        only reported after a short delay, so the browser can tell the
+        two apart.
+    </p>
+    <p>
+        <button type="button" id="clickTimerBtn">Single vs double click</button>
+    </p>
+
+    <!-- The live log panel. -->
+    <h2>Event log</h2>
+    <div class="log" id="log"></div>
+
+    <script src="events.js"></script>
+</body>
+</html>

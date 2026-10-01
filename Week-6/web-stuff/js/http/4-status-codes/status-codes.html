@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Status Codes — What Did the Server Say?</title>
+    <style>
+        /* Minimal styling so the page is readable while you experiment. */
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 760px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #212121;
+            line-height: 1.5;
+        }
+        .note {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        code {
+            background: #eceff1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        button {
+            font: inherit;
+            padding: 6px 12px;
+            margin: 4px 4px 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #f1f3f4;
+        }
+        /* A category section (2xx, 3xx, 4xx, 5xx). */
+        .category {
+            margin: 16px 0;
+        }
+        .category h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+        /* A grid of status code cards. */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .code-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 12px;
+            border-left: 5px solid #999;
+        }
+        .code-card .num {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .code-card .name {
+            font-weight: 600;
+            margin: 2px 0;
+        }
+        .code-card .desc {
+            font-size: 13px;
+            color: #555;
+        }
+        /* Category border colors. */
+        .cat-2xx .code-card { border-left-color: #188038; }
+        .cat-3xx .code-card { border-left-color: #1a73e8; }
+        .cat-4xx .code-card { border-left-color: #f9ab00; }
+        .cat-5xx .code-card { border-left-color: #d93025; }
+        /* The results panel showing the live request status. */
+        .result {
+            background: #263238;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTTP status codes: what did the server say?</h1>
+
+    <p class="note">
+        Every response includes a three-digit status code that tells the
+        client whether the request worked, got redirected, or failed. The
+        first digit groups them by category. The cards below show the
+        common codes; the buttons at the bottom send <em>real</em>
+        requests so you can see live status codes.
+    </p>
+
+    <!--
+        CATEGORY: 2xx SUCCESS
+        The request was received, understood, and accepted.
+    -->
+    <div class="category cat-2xx">
+        <h2>2xx Success</h2>
+        <div class="grid">
+            <div class="code-card">
+                <div class="num">200</div>
+                <div class="name">OK</div>
+                <div class="desc">The request succeeded. The usual result for a successful GET.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">201</div>
+                <div class="name">Created</div>
+                <div class="desc">A new resource was created — common for a successful POST.</div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        CATEGORY: 3xx REDIRECTION
+        Further action is needed to complete the request (e.g. the URL moved).
+    -->
+    <div class="category cat-3xx">
+        <h2>3xx Redirection</h2>
+        <div class="grid">
+            <div class="code-card">
+                <div class="num">301</div>
+                <div class="name">Moved Permanently</div>
+                <div class="desc">The resource's URL has permanently changed; the browser follows the new location.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">304</div>
+                <div class="name">Not Modified</div>
+                <div class="desc">Used with caching — the resource hasn't changed, so the browser can reuse its copy.</div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        CATEGORY: 4xx CLIENT ERROR
+        The request was bad or the client isn't allowed to do it.
+    -->
+    <div class="category cat-4xx">
+        <h2>4xx Client Error</h2>
+        <div class="grid">
+            <div class="code-card">
+                <div class="num">400</div>
+                <div class="name">Bad Request</div>
+                <div class="desc">The server can't process the request because it's malformed.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">401</div>
+                <div class="name">Unauthorized</div>
+                <div class="desc">Authentication is required and is missing or wrong.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">403</div>
+                <div class="name">Forbidden</div>
+                <div class="desc">The server understood the request but refuses to let you do it.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">404</div>
+                <div class="name">Not Found</div>
+                <div class="desc">The requested resource doesn't exist on the server.</div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        CATEGORY: 5xx SERVER ERROR
+        The request was valid, but the server failed trying to fulfill it.
+    -->
+    <div class="category cat-5xx">
+        <h2>5xx Server Error</h2>
+        <div class="grid">
+            <div class="code-card">
+                <div class="num">500</div>
+                <div class="name">Internal Server Error</div>
+                <div class="desc">A generic error — the server hit an unexpected condition.</div>
+            </div>
+            <div class="code-card">
+                <div class="num">503</div>
+                <div class="name">Service Unavailable</div>
+                <div class="desc">The server can't handle the request right now (e.g. overload or maintenance).</div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        LIVE DEMO
+        The cards above are reference. These buttons send real requests to
+        the PokeAPI so you can SEE an actual status code come back — a 200
+        for a real Pokémon, and a 404 for a name that doesn't exist.
+    -->
+    <h2>Live: see a real status code</h2>
+    <p>
+        <button type="button" id="validBtn">Fetch "pikachu" (expect 200)</button>
+        <button type="button" id="missingBtn">Fetch "notapokemon" (expect 404)</button>
+    </p>
+    <div class="result" id="result">Click a button to send a real request.</div>
+
+    <script src="status-codes.js"></script>
+</body>
+</html>
