@@ -70,7 +70,7 @@ document.getElementById('demoForm').addEventListener('submit', (e) => {
 // When an event fires, the browser passes an EVENT OBJECT to the
 // listener. It carries useful metadata:
 //   e.target        -> the element that actually triggered the event
-//   e.currentTarget-> the element the listener is attached to
+//   e.currentTarget -> the element the listener is attached to
 //   e.type          -> the name of the event (e.g. "click")
 //   e.key           -> (keyboard events) the key that was pressed
 // We used e.target and e.key above. Here's e.type in action:

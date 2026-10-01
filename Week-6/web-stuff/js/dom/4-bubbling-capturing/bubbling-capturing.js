@@ -48,7 +48,7 @@ for (const id of boxes) {
 // ------------------------------------------------------------------
 // 2. STOPPING THE FLOW
 // ------------------------------------------------------------------
-// Sometimes you want to stop an event from travelling further.
+// Sometimes you want to stop an event from traveling further.
 
 // stopPropagation() stops the event from bubbling (or capturing) any
 // further up the tree. Here we stop the click at the button, so the
