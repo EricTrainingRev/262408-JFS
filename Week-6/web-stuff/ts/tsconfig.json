@@ -52,7 +52,7 @@
     // =============================================================
     // The JS version emitted. ES2020 = modern syntax readable in current
     // browsers and Node 18+, no transpiling of classes/arrows/etc.
-    "target": "ES2020",
+    "target": "es2020",
     // Keep ES `import`/`export` syntax in the output (we use ESM via
     // "type": "module" in package.json), rather than CommonJS.
     "module": "ESNext",

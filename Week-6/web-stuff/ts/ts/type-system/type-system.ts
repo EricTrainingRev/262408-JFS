@@ -15,8 +15,8 @@
 // The simplest types: string, number, boolean, array.
 // You can write the annotation after a colon (`: type`), as below.
 
-let userName: string = "Billy";      // string: text
-let age: number = 25;                 // number: integers and decimals treated the same
+let userName: string = "Billy";       // string: text
+let age = 25;                         // number: integers and decimals treated the same (note no need for explicit type declaration)
 let isReady: boolean = true;          // boolean: true or false
 let scores: number[] = [10, 20, 30];  // number[]: an array of numbers
 
@@ -50,6 +50,11 @@ let loose: any = 5;
 loose = "now a string";           // any lets you change the type freely
 console.log(loose.toUpperCase()); // now a string, was a number before
 
+// unlike above, the code below will cause the compiler to complain we are trying to assign a string to
+// a number variable
+// let strict = 10; 
+// strict = "10";
+
 // `unknown` is the safe version of `any`: it also accepts anything, but
 // you can't use the value until you prove what it actually is.
 let safeValue: unknown = 42;
@@ -70,7 +75,7 @@ function format(input: string | number): string {
   if (typeof input === "number") {
     return input.toFixed(1);       // here TS knows input is a number
   }
-  return input.toUpperCase();      // here TS knows input is a string
+  return input.toUpperCase(); // here TS knows input is a string
 }
 
 console.log(format(3.14159));      // 3.1

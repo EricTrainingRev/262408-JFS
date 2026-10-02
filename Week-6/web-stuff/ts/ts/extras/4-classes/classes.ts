@@ -100,9 +100,10 @@ console.log(u.name);       // Grace  (public)
 // `implements` says "this class promises to have the shape of the
 // interface." The compiler checks the class satisfies it.
 interface Shape {
-  area(): number;
+  area(): number
 }
 
+// multiple interfaces can be implemented
 class Square implements Shape {
   constructor(private side: number) {}
 

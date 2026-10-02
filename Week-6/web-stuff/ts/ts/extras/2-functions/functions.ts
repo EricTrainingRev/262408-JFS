@@ -67,7 +67,8 @@ console.log(divide(10, 2)); // 5
 // === 5. PASSING A FUNCTION (CALLBACK) ================================
 // A function that takes another function as an argument is a higher-order
 // function. The callback's type is spelled out in the parameter list.
-function applyTwice(value: number, transform: (n: number) => number): number {
+type TransformFunction = (n: number) => number;
+function applyTwice(value: number, transform: TransformFunction): number {
   return transform(transform(value));
 }
 console.log(applyTwice(3, (n) => n + 1)); // 5  (3 -> 4 -> 5)

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "echo \"HOOK RAN: $(date)\" >> /tmp/copilot-hook-test.txt",
+        "powershell": "Add-Content -Path $env:TEMP\\copilot-hook-test.txt -Value \"HOOK RAN: $(Get-Date)\"",
+        "cwd": ".",
+        "timeoutSec": 10
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "mkdir -p logs && cat >> logs/prompts.log",
+        "powershell": "New-Item -ItemType Directory -Force -Path logs | Out-Null; [Console]::In.ReadToEnd() | Add-Content -Path logs/prompts.log",
+        "cwd": ".",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}
