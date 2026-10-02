@@ -1,0 +1,94 @@
+{
+  "compilerOptions": {
+    // =============================================================
+    // TYPE SAFETY — this project is configured to *enforce* strict typing.
+    // The single most important setting; a sensible baseline for any
+    // new project. It flips on the whole family of checks below at once,
+    // listed individually below so it's obvious what "strict" implies.
+    // =============================================================
+    "strict": true,
+    // Error when a type cannot be inferred and was not written explicitly
+    // (i.e. ban code silently falling back to the permissive `any` type).
+    "noImplicitAny": true,
+    // null/undefined are separate from every other type. You MUST handle
+    // them explicitly before using a value — kills the dreaded
+    // "Cannot read properties of undefined" runtime crashes.
+    "strictNullChecks": true,
+    // Parameters of function types are checked contravariant: 
+    // A function assigned into a type must accept everything the type might receive — not less.
+    "strictFunctionTypes": true,
+    // A class field declared without an initializer must be assigned in the
+    // constructor (you cannot leave it "definitely unassigned").
+    "strictPropertyInitialization": true,
+    // `this` in a function must have a known type — no implicit `any` for it.
+    "noImplicitThis": true,
+    // The variable bound in a `catch (e)` clause is `unknown`, not `any`,
+    // so you must narrow it before using it. Safer error handling.
+    "useUnknownInCatchVariables": true,
+
+    // -- extra strictness beyond the default `strict` family --
+    // For an optional property `foo?: string`, you may NOT explicitly assign
+    // `undefined`. If there is no value, simply omit the key. Distinguishes
+    // "absent" from "present but undefined".
+    "exactOptionalPropertyTypes": true,
+    // Indexing `arr[i]` or `obj[key]` yields `T | undefined`, so a value read
+    // by index CAN be undefined and you must check it. No array-index
+    // assumption that a slot is populated.
+    "noUncheckedIndexedAccess": true,
+    // When a subclass overrides a base-class method, it must write
+    // `override` on the new method — you cannot silently shadow a method.
+    "noImplicitOverride": true,
+    // Every code path in a function must return a value; you cannot fall off
+    // the end of a function that promises to return one.
+    "noImplicitReturns": true,
+    // No implicit fall-through between `case` blocks in a `switch`.
+    "noFallthroughCasesInSwitch": true,
+    // An import/module can name a file with a different case than it actually
+    // has (matters on case-sensitive filesystems) — required to be identical.
+    "forceConsistentCasingInFileNames": true,
+
+    // =============================================================
+    // MODULES & OUTPUT — how input becomes runnable JavaScript.
+    // =============================================================
+    // The JS version emitted. ES2020 = modern syntax readable in current
+    // browsers and Node 18+, no transpiling of classes/arrows/etc.
+    "target": "ES2020",
+    // Keep ES `import`/`export` syntax in the output (we use ESM via
+    // "type": "module" in package.json), rather than CommonJS.
+    "module": "ESNext",
+    // How TypeScript resolves the path of an imported module. "Bundler" is the
+    // modern resolution that e.g. webpack/Vite use; lint/type tools agree on it.
+    "moduleResolution": "Bundler",
+    // This setting determines whether or not to generated JS from your TS modules
+    // if there are any compiler issues. This is set to false by default
+    "noEmitOnError": true,
+
+    // Source .ts files are found under ./ts; compiled .js is emitted to ./dist.
+    "rootDir": "./ts",
+    "outDir": "./dist",
+
+    // Smoothly import CommonJS packages (allow default-importing them).
+    "esModuleInterop": true,
+    // What is a declaration (.d.ts) file? It is a contract describing the
+    // *shapes* of code without any implementation — think of a header or type
+    // signature for a JS library. When you `npm install` a package, its .d.ts
+    // files tell TypeScript "this function takes X and returns Y" but contain no
+    // runnable logic; they exist only at compile time and vanish from the emitted
+    // JS. `skipLibCheck` skips type-checking *inside* those files to compile
+    // faster — without changing how the types they declare are consumed by your
+    // own code.
+    "skipLibCheck": true,
+    // Emit .js.map files so the browser devtools/debugger maps the compiled
+    // JS back to your original .ts source lines.
+    "sourceMap": true
+  },
+
+  // Which files count as part of this project (all .ts under ./ts/).
+  // `include` decides which files the compiler looks at (the input set, via globs), 
+  // while `rootDir` only controls a side-effect — how much of the folder structure is 
+  // mirrored in the output so `outDir` nests folders the same way. Since every input 
+  // lives under ./ts, setting both to ./ts keeps the emitted layout flat and predictable.
+  "include": ["ts/**/*.ts"],
+  // Anything we never want the compiler to look at.
+  "exclude": ["node_modules", "dist"]
+}
